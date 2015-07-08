@@ -1,0 +1,29 @@
+{
+  "name": "gulp-starter",
+  "version": "0.0.1",
+  "description": "Gulp starter with common tasks and scenarios",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:luankefei/fishbone.git"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-concat": "*",
+    "gulp-connect": "^2.2.0",
+    "gulp-jshint": "*",
+    "gulp-livereload": "^3.8.0",
+    "gulp-mocha": "*",
+    "gulp-rename": "*",
+    "gulp-uglify": "*",
+    "gulp-stylus": "*",
+    "jasmine-core": "^2.3.4",
+    "karma": "*",
+    "karma-browserify": "*",
+    "karma-chrome-launcher": "*",
+    "karma-coffee-preprocessor": "*",
+    "karma-jasmine": "^0.3.5",
+    "karma-mocha": "*",
+    "karma-nyan-reporter": "*",
+    "karma-sinon-chai": "*"
+  }
+}
