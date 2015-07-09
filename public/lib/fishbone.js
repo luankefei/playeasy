@@ -1721,7 +1721,7 @@ Http.ajax = function(setting, events) {
     req.open(type, url)
 
     // 调用beforeSend，这里面不能写异步函数
-    setting.beforeSend && setting.beforeSend(req)
+    setting.before && setting.before(req)
 
     req.onreadystatechange = function() {
 
@@ -2922,14 +2922,17 @@ Route.setTitle = function(title) {
 // TODO: loadCss和loadJs的结构相似
 Route.loadCss = function(arr) {
 
-    var cssReady = 0
+    var cssReady = 0,
+        isArray = arr instanceof Array
 
     var callback = function() {
 
         cssReady += 1
 
-        if (arr === undefined || cssReady === arr.length) {
-            
+        if (arr === undefined 
+            || (isArray && cssReady === arr.length) 
+            || !isArray) {
+
             var hash = Route.routes[Route.hash]
             
             Route.loadTemplate(hash['template'])
@@ -2944,9 +2947,17 @@ Route.loadCss = function(arr) {
         return
     }
 
-    for (var i = 0; i < arr.length; i++) {
+    // 判断css是否是数组
+    if (isArray) {
 
-        Http.getCss(arr[i], callback)
+        for (var i = 0; i < arr.length; i++) {
+
+            Http.getCss(arr[i], callback)
+        }
+    // 直接调用Http.getCss 
+    } else {
+
+        Http.getCss(arr, callback)
     }
 }
 // TODO: provider可以考虑改成类

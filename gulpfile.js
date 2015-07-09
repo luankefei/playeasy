@@ -1,19 +1,11 @@
+
 var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
-    // connect = require('gulp-connect'),
     livereload = require('gulp-livereload'),
     stylus = require('gulp-stylus')
-
-// gulp.task('connect', function() {
-
-//     connect.server({
-//         root: '',
-//         livereload: true
-//     })
-// })
 
 // Lint JS
 // TODO
@@ -46,10 +38,9 @@ gulp.task('watch', function() {
 
     livereload.listen()
 
-    gulp.watch('**.html', ['reload'])
-
+    gulp.watch('index.html', ['reload'])
+    gulp.watch('view/*.html', ['reload'])
     gulp.watch('src/*.js', ['lint', 'reload'])
-
     gulp.watch('stylus/*.styl', ['stylus', 'reload'])
 })
 
