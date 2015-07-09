@@ -15,6 +15,10 @@ exports.doLogin = function(req, res) {
     var fakeUser = {},
         code = -1
 
+
+    console.log(req.body)
+
+
     // 登录成功
     if (req.body.email === 'sunken@admin.com' && req.body.password === '123456') {
 
@@ -37,7 +41,6 @@ exports.doLogin = function(req, res) {
         data: fakeUser
     })
 }
-
 
 exports.getCurrentUser = function(req, res) {
 

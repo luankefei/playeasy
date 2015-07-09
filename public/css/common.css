@@ -131,8 +131,8 @@ h5 { font-size:13px; }
 
 /* 选中的颜色 */
 *::selection {
-	background:#6ad0c3;
-	color:#fff;
+    background:#eda7bb;
+    color:#fff;
 }
 
 *::-moz-selection {
