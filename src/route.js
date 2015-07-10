@@ -12,5 +12,15 @@ $.route()
         js: '/src/list.js',
         css: '/public/css/list.css'
     })
+    .when('/detail', {
+
+        template: '/view/detail.html',
+        js: '/src/detail.js',
+        css: [
+            '/public/css/detail.css',
+            '/public/css/chartbar.css',
+        ]
+
+    })
     .otherwise('/')
     .scan()

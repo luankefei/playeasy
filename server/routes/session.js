@@ -15,23 +15,19 @@ exports.doLogin = function(req, res) {
     var fakeUser = {},
         code = -1
 
-
-    console.log(req.body)
-
-
-    // 登录成功
+    // 根据username查找用户
     if (req.body.email === 'sunken@admin.com' && req.body.password === '123456') {
 
-        code = 0
+        // code = 0
 
-        fakeUser = {
+        // fakeUser = {
 
-            id: 1,
-            nickname: 'sunken',
-            email: 'sunken@admin.com',
-            password: '123456',
-            group: 'admin'
-        }
+        //     id: 1,
+        //     nickname: 'sunken',
+        //     email: 'sunken@admin.com',
+        //     password: '123456',
+        //     group: 'admin'
+        // }
     }
 
     req.session.user = fakeUser

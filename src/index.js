@@ -16,7 +16,7 @@ define(function(require) {
             url: '/session?t=' + Math.random(),
             type: 'post',
             param: {
-                email: username,
+                username: username,
                 password: password
             },
             success: function(d) {
@@ -43,10 +43,6 @@ define(function(require) {
             })
         }   // end if
     })
-
-
-
-
 })
 
 

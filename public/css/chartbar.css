@@ -1,0 +1,207 @@
+.controlbar {
+  background: #fff;
+  border: 1px solid #c9c9c6;
+  height: 900px;
+  right: 9px;
+  position: fixed;
+  top: 88px;
+  width: 248px;
+  display: none;
+  z-index: 999;
+}
+.controlbar h4 {
+  font-size: 14px;
+  font-weight: normal;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #c9c9c6;
+}
+.controlbar .tabbar {
+  border-bottom: 1px solid #c9c9c6;
+}
+.controlbar .tabbar ul > li {
+  float: left;
+  width: 82px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  border-right: 1px solid #c9c9c6;
+  font-size: 14px;
+}
+.controlbar .tabbar ul > li:hover {
+  background: #33beac;
+  color: #fff;
+  cursor: pointer;
+}
+.controlbar .tabbar ul > li:last-child {
+  border-right: none;
+}
+.controlbar .tabbar ul > li.selected {
+  background: #ff6f76;
+  color: #fff;
+}
+.controlbar .settings {
+  padding: 20px 12px;
+}
+.controlbar .settings dl {
+  padding-bottom: 15px;
+}
+.controlbar .settings dl:last-child {
+  margin-bottom: 0;
+}
+.controlbar .settings dt {
+  float: left;
+  width: 26%;
+  line-height: 30px;
+}
+.controlbar .settings dd {
+  float: right;
+  width: 74%;
+}
+.controlbar .settings dd > * {
+  float: right;
+}
+.controlbar[data-type="chart"] .settings {
+  display: none;
+}
+.controlbar[data-type="chart"] .settings.basic {
+  display: block;
+}
+#select-chart-data,
+#bind-data,
+#font-link,
+#global-bind-data {
+  width: 100%;
+  margin-top: 10px;
+}
+/*#select-chart-data 
+    margin-bottom: 25px
+*/
+.controlbar .settings .checkbox {
+  margin-top: 4px;
+}
+.controlbar .settings dd .rotate {
+  width: 83px;
+}
+.controlbar .settings dd .reset {
+  float: right;
+  width: 60px;
+  margin-left: 10px;
+}
+.controlbar .settings .pair,
+.controlbar .settings .custom-color,
+.controlbar .settings .box {
+  border-top: 1px solid #c9c9c6;
+  margin-top: 30px;
+  padding-top: 30px;
+}
+.controlbar .settings .custom-color ul li {
+  float: left;
+  width: 20px;
+  height: 20px;
+  outline: 1px solid #bfbcba;
+}
+.controlbar .settings .custom-color ul li:hover {
+  cursor: pointer;
+}
+#font-bar .settings.compose > button {
+  float: left;
+  width: 35px;
+  height: 26px;
+  outline: 1px solid #c9c9c6;
+  background: #f8f7f9;
+}
+#font-bar .settings.compose > button:nth-child(2) {
+  margin-right: 13px;
+}
+/* #font-bar .settings.compose > div:nth-child(1) 
+    margin-bottom: 12px
+
+#font-bar .settings.compose > div:nth-child(1) > button 
+    float: left
+    width: 74px
+    height: 26px
+    background: rgb(248, 247, 249)
+    outline: 1px solid #c9c9c6
+
+#font-bar .settings.compose > div:nth-child(1) > button:nth-child(3) 
+    width: 75px
+
+#font-bar .settings.compose > div:nth-child(2) > button 
+    float: left
+    width: 56px
+    height: 26px
+    background: rgb(248, 247, 249)
+    outline: 1px solid #c9c9c6
+
+#font-bar .settings.compose > div:nth-child(2) > button:nth-child(4) 
+    width: 55px
+
+*/
+#font-bar #font-bold {
+  background-image: url("/resource/images/controlbar/font_bold.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#font-bar #font-italic {
+  background-image: url("/resource/images/controlbar/font_italic.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* #font-bar #font-underline 
+    background-image: url(/resource/images/controlbar/font_italic.png)
+    background-position: center
+    background-repeat: no-repeat
+
+*/
+#font-bar #font-align-left {
+  background-image: url("/resource/images/controlbar/align_left.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #319b8d;
+}
+#font-bar #font-align-right {
+  background-image: url("/resource/images/controlbar/align_right.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#font-bar #font-align-center {
+  background-image: url("/resource/images/controlbar/align_center.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#font-bar #font-align-justify {
+  background-image: url("/resource/images/controlbar/align_justify.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#chart-bar .settings.interaction .tip {
+  margin-bottom: 20px;
+  display: block;
+}
+#chart-bar .settings.interaction .start-panel button {
+  width: 100px;
+}
+/*#chart-bar .settings.interaction > button:first 
+    float: left
+*/
+#chart-bar .settings.interaction button:nth-child(3) {
+  float: right;
+}
+#chart-bar .follow-panel,
+#chart-bar .main-panel {
+  display: none;
+}
+#chart-bar .toggle {
+  display: none;
+}
+#chart-bar .start-panel {
+  display: block;
+}
+/*#chart-bar .toggle 
+    margin-bottom: 
+*/
+#global-bar .settings > dl:nth-child(3) {
+  padding: 0;
+}

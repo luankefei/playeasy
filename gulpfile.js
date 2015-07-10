@@ -24,7 +24,7 @@ gulp.task('stylus', function() {
 
     return gulp.src('stylus/*.styl')
         .pipe(stylus())
-        .pipe(gulp.dest('./public/css'))
+        .pipe(gulp.dest('public/css'))
 
 })
 
@@ -32,11 +32,10 @@ gulp.task('stylus', function() {
 
 // livereload.listen()
 
+livereload.listen()
 // Watch Our Files
 // TODO
 gulp.task('watch', function() {    
-
-    livereload.listen()
 
     gulp.watch('index.html', ['reload'])
     gulp.watch('view/*.html', ['reload'])

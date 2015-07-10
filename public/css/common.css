@@ -19,7 +19,7 @@ textarea { resize: none; } /*禁用跨行文本输入框的拖拽*/
 table { border-collapse: collapse;border-spacing: 0; }
 address, caption, cite, code, dfn, em, th, var, optgroup { font-style: normal;font-weight: normal; }
 input, button, textarea, select, optgroup, option { font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit; }
-a { color:rgb(237, 68, 65);text-decoration:none; } /*所有链接无修饰[上,下划线,虚线...]*/
+a { color:#ed4441;text-decoration:none; } /*所有链接无修饰[上,下划线,虚线...]*/
 a:link { text-decoration:none; }
 a:visited {}
 a:hover { cursor:pointer; }
