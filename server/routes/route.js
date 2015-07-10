@@ -23,7 +23,7 @@ module.exports = function(app) {
     // app.get('/user/:id', user.getUser)
     // 测试接口
     app.get('/session', session.getCurrentUser)
-    app.post('/session', session.doLogin)
+    app.post('/session', session.login)
     app.delete('/session', session.logout)
 
     app.get('/template', template.getTemplate)

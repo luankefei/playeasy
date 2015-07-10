@@ -7,19 +7,15 @@
  * @description user模块的入口
  * @date 2015.7.8
  */
-
 var User = require('../models/user')
 
-exports.doLogin = function(req, res) {
+exports.login = function(req, res) {
 
     User.getUserByUserName(req.body.username, function(err, users) {
 
         // default: failure
         var code = -1,
             message = '用户名或密码错误'
-
-        console.log('------------------------------')
-        console.log(users)
 
         // 有数据返回，进行密码比对
         if (users.length !== 0 && users[0].password === req.body.password) {
@@ -37,11 +33,19 @@ exports.doLogin = function(req, res) {
     })
 }
 
+// 如果session中不存在用户，code为-1
 exports.getCurrentUser = function(req, res) {
+
+    var code = -1
+
+    if (req.session.user !== undefined) {
+
+        code = 0
+    }
 
     res.send({
 
-        code: 0,
+        code: code,
         data: req.session.user
     })
 }
@@ -74,8 +78,17 @@ exports.getUser = function(req, res) {
     })
 }
 
+// 不经过数据库，直接清除session
 exports.logout = function(req, res) {
 
+    console.log('node logout')
+
+    delete req.session.user
+
+    res.send({
+        code: 0,
+        message: '删除成功'
+    })
 }
 
 

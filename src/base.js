@@ -27,13 +27,19 @@ var PE = (function() {
     }
 
     // 从session中获取当前用户
+    // 如果session中不存在用户，并且当前用户不在首页，跳回首页
     pe.getCurrentUser = function() {
 
         $.get('/session', function(d) {
 
-            if (d.code == 0)
+            if (d.code == 0) {
 
-            window.currentUser = d.data
+                window.currentUser = d.data
+
+            } else if (window.location.hash !== '') {
+
+                window.location.href = '/'
+            }
 
             // 初始化用户菜单
             initUserMenu()
@@ -50,13 +56,27 @@ $(document).ready(function() {
     $('#account').live('mouseover', function() {
 
         $('#account-menu-list').show()
-        // $('#user-name').css('background-color', '#eda7bb')
     })
 
     $('#account').live('mouseout', function() {
-        
+
         $('#account-menu-list').hide()
-        // $('#user-name').css('background-color', '#fff')
+    })
+
+    // 登出并返回首页
+    $('#logout').on('click', function(e) {
+
+        $.ajax({
+            url: '/session?t=' + Math.random(),
+            type: 'delete',
+            success: function(d) {
+                
+                window.location.href = '/'
+            }
+        })
+
+        e.preventDefault()
+        e.stopPropagation()
     })
 })
 
