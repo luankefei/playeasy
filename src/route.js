@@ -29,6 +29,12 @@ $.route()
             '/public/css/chartbar.css',
         ]
     })
+    .when('/user', {
+
+        template: '/view/user.html',
+        js: '/src/detail.js',
+        css: '/public/css/user.css'
+    })
     .otherwise('/')
     .enter(function(name) {
 

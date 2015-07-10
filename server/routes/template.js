@@ -1,3 +1,4 @@
+
 'use strict'
 
 /**
@@ -8,8 +9,26 @@
  */
 var Template = require('../models/template.js')
 
-
 exports.getTemplate = function(req, res) {
+
+    var fakeTemplates = [{
+
+        id: 4,
+        order: 0,
+        name: '测试模板',
+        documentId: 1,
+        thumbnail: '/public/image/test_template1.jpg',
+        author: 'dagou',
+
+        // 不太重要的字段
+        // themeId: 1,
+        // composingId: 1,
+    }]
+
+    // Template.getTemplate(function(err, templates) {
+
+
+    // })
 
     res.send({
 
@@ -17,8 +36,6 @@ exports.getTemplate = function(req, res) {
         message: '执行成功',
         data: fakeTemplates
     })
-
-
 
     // Template.getContent(start, end, function(err, contents) {
 
@@ -38,7 +55,7 @@ exports.getTemplate = function(req, res) {
     // })
 }
 
-
+/*
 var fakeTemplates = [{
         id: 1,
         order: 0,
@@ -249,3 +266,4 @@ var fakeTemplates = [{
     }
 
     ]
+    */

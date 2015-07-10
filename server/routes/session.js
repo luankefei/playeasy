@@ -91,7 +91,6 @@ exports.logout = function(req, res) {
     })
 }
 
-
 /**
  * 2015.7.10
  * 修改doLogin，不再使用假数据

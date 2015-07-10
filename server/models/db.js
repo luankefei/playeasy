@@ -4,7 +4,7 @@
 var poolModule = require('generic-pool'),
     config = require('../config').config
 
-// 这里好多坑，文档不更新什么的真是……
+// 这里好多坑，文档不更新什么的醉了
 var pool = poolModule.Pool({
     name: 'mysql',
 
