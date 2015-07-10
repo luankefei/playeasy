@@ -7,7 +7,6 @@
  * @author  sunken
  * @date 2015.7.9
  */
-
 define(function(require) {
 
     console.log('detail loaded !')

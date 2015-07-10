@@ -7,7 +7,6 @@
  * @author  sunken
  * @date 2015.7.8
  */
-
 define(function(require) {
 
     var login = function(username, password, callback) {
