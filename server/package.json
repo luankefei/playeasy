@@ -15,6 +15,7 @@
     "serve-static": "*",
     "body-parser": "*",
     "multer": "*",
-    "express-session": "*"
+    "express-session": "*",
+    "generic-pool": "*"
   }
 }

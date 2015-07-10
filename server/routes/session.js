@@ -12,29 +12,28 @@ var User = require('../models/user')
 
 exports.doLogin = function(req, res) {
 
-    var fakeUser = {},
-        code = -1
+    User.getUserByUserName(req.body.username, function(err, users) {
 
-    // 根据username查找用户
-    if (req.body.email === 'sunken@admin.com' && req.body.password === '123456') {
+        // default: failure
+        var code = -1,
+            message = '用户名或密码错误'
 
-        // code = 0
+        console.log('------------------------------')
+        console.log(users)
 
-        // fakeUser = {
+        // 有数据返回，进行密码比对
+        if (users.length !== 0 && users[0].password === req.body.password) {
 
-        //     id: 1,
-        //     nickname: 'sunken',
-        //     email: 'sunken@admin.com',
-        //     password: '123456',
-        //     group: 'admin'
-        // }
-    }
+            code = 0 
+            message = '登录成功'
+        }
 
-    req.session.user = fakeUser
-    res.send({
-
-        code: code,
-        data: fakeUser
+        // 确认用户名和密码都匹配后，存入session
+        req.session.user = users[0]
+        res.send({
+            code: code,
+            message: message
+        })
     })
 }
 
@@ -77,6 +76,10 @@ exports.getUser = function(req, res) {
 
 exports.logout = function(req, res) {
 
-
-
 }
+
+
+/**
+ * 2015.7.10
+ * 修改doLogin，不再使用假数据
+ */
