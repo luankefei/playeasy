@@ -44,3 +44,19 @@ var PE = (function() {
 
 } ())
 
+// 导航事件
+$(document).ready(function() {
+
+    $('#account').live('mouseover', function() {
+
+        $('#account-menu-list').show()
+        // $('#user-name').css('background-color', '#eda7bb')
+    })
+
+    $('#account').live('mouseout', function() {
+        
+        $('#account-menu-list').hide()
+        // $('#user-name').css('background-color', '#fff')
+    })
+})
+

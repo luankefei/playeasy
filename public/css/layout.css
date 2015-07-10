@@ -81,8 +81,8 @@ footer {
   margin: 0 auto;
 }
 #account {
+  float: right;
   display: none;
-  float: left;
   margin-left: 50px;
   position: relative;
   width: 100px;
@@ -96,7 +96,7 @@ footer {
   text-align: center;
 }
 #account-menu-list {
-  background: #e7f2ef;
+  background: #fff;
   display: none;
   z-index: 1003;
 }
@@ -104,7 +104,13 @@ footer {
   line-height: 30px;
   text-align: center;
 }
+#account-menu-list > ul > li:hover {
+  background: #eda7bb;
+}
 #account-menu-list > ul > li > a {
   display: block;
   height: 30px;
+}
+#account-menu-list > ul > li > a:hover {
+  color: #fff;
 }
