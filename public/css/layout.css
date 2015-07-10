@@ -1,85 +1,110 @@
 header {
-    background: #fff;
-    height: 34px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
-    box-shadow: 0 0 4px #bcbcbc;
+  background: #fff;
+  height: 34px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  box-shadow: 0 0 4px #bcbcbc;
 }
 header .container {
-    width: 95%;
-    height: 100%;
+  width: 95%;
+  height: 100%;
 }
 header .logo {
-    float: left;
-    height: 26px;
-    margin-top: 8px;
+  float: left;
+  height: 26px;
+  margin-top: 8px;
 }
 header .logo img {
-    vertical-align: middle;
-    width: 100px;
+  vertical-align: middle;
+  width: 100px;
 }
 nav {
-    height: 100%;
+  height: 100%;
 }
 nav > .search {
-    float: left;
-    margin-left: 20px;
+  float: left;
+  margin-left: 20px;
 }
 nav > .search > input {
-    height: 24px;
-    width: 286px;
-    border: 1px solid #c9c9c6;
-    color: rgb(166, 170, 169);
-    padding-left: 6px;
-    margin-top: 4px;
-    margin-left: 50px;
+  height: 24px;
+  width: 286px;
+  border: 1px solid #c9c9c6;
+  color: #a6aaa9;
+  padding-left: 6px;
+  margin-top: 4px;
+  margin-left: 50px;
 }
 nav > ul {
-    float: right;
+  float: right;
 }
 nav > ul > li {
-    height: 100%;
-    display: inline-block;
-    line-height: 34px;
+  height: 100%;
+  display: inline-block;
+  line-height: 34px;
 }
 nav ul li a {
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 nav > .user-wrap {
-    float: right;
-    height: 100%;
-    width: 200px;
-    display: none;
+  float: right;
+  height: 100%;
+  width: 200px;
+  display: none;
 }
 footer {
-    background: rgb(220, 222, 224);
-    width: 100%;
-    color: #fff;
-    height: 20px;
-    left: 0;
-    line-height: 20px;
-    text-align: center;
+  background: #dcdee0;
+  width: 100%;
+  color: #fff;
+  height: 20px;
+  left: 0;
+  line-height: 20px;
+  text-align: center;
 }
 #load-bar {
-    background: #33beac;
-    /*box-shadow: 1px 0 2px #444;*/
-    height: 3px;
-    width: 0;
-    position: fixed;
-    top: 0;
+  background: #33beac;
+  height: 3px;
+  width: 0;
+  position: fixed;
+  top: 0;
 }
-
 .wrapper {
-    padding-top: 34px;
+  padding-top: 34px;
 }
-
 .container {
-    width: 990px;
-    margin: 0 auto;
+  width: 990px;
+  margin: 0 auto;
+}
+#account {
+  display: none;
+  float: left;
+  margin-left: 50px;
+  position: relative;
+  width: 100px;
+}
+#account > #user-name {
+  background-image: url("/resource/images/select.png");
+  background-repeat: no-repeat;
+  background-position: 78px 14px;
+  display: block;
+  line-height: 34px;
+  text-align: center;
+}
+#account-menu-list {
+  background: #e7f2ef;
+  display: none;
+  z-index: 1003;
+}
+#account-menu-list > ul > li {
+  line-height: 30px;
+  text-align: center;
+}
+#account-menu-list > ul > li > a {
+  display: block;
+  height: 30px;
 }
