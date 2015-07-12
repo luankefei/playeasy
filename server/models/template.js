@@ -1,3 +1,4 @@
+
 'use strict'
 
 /**
@@ -7,18 +8,20 @@
  * @date 2015.7.9
  */
 
-exports.getContent = function(start, end, callback) {
+var pool = require('../models/db.js')
+
+// 获取模板，预留分页功能
+exports.getTemplate = function(callback, start, end) {
 
     var sql = null
 
-    if (start !== null) {
+    if (start !== undefined) {
 
-        sql = 'select * from content limit ' + start + ', ' + end
+        sql = 'select * from pe_template limit ' + start + ', ' + end
 
     } else {
 
-        sql = 'select * from content'
-
+        sql = 'select * from pe_template'
     }
 
     pool.acquire(function(err, client) {

@@ -25,17 +25,21 @@ exports.getTemplate = function(req, res) {
     //     // composingId: 1,
     // }]
 
-    // Template.getTemplate(function(err, templates) {
+    // 从数据库中获取模板
+    Template.getTemplate(function(err, templates) {
 
+        res.send({
 
-    // })
-
-    res.send({
-
-        code: 0,
-        message: '执行成功',
-        data: fakeTemplates
+            code: 0,
+            message: '执行成功',
+            data: templates
+        })
     })
+    
+    
+
+
+    
 
     // Template.getContent(start, end, function(err, contents) {
 
@@ -55,7 +59,7 @@ exports.getTemplate = function(req, res) {
     // })
 }
 
-
+/*
 var fakeTemplates = [{
         id: 1,
         order: 0,
@@ -263,7 +267,6 @@ var fakeTemplates = [{
         documentId: 1,
         thumbnail: '/public/image/test_template1.jpg',
         author: 'dagou'
-    }
-
-]
+    }]
   
+*/

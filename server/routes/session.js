@@ -81,10 +81,8 @@ exports.getUser = function(req, res) {
 // 不经过数据库，直接清除session
 exports.logout = function(req, res) {
 
-    console.log('node logout')
-
     delete req.session.user
-
+    
     res.send({
         code: 0,
         message: '删除成功'

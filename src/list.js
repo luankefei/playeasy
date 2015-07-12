@@ -137,23 +137,27 @@ define(function(require) {
                     heightArr[shorterColumn] += parseInt(height)
                 } // end function callback
 
+                // TODO: 如果thunbnail url是错误的，imgReady不会执行callback
                 $.imgReady(thumbnail, callback)
 
             } (i, thumbnail)
         }   // end for
 
         var wait = setInterval(function() {
-
+            
+            // TODO: 这个判断能够确保所有数据都在dataArr，不明觉历
             if (data.length > 0 
                 && typeof dataArr !== 'undefined' 
                 && dataArr.length > 0) {
-
+            
+            // TODO: 如果图片url错误，imgReady不会触发回调，dataArr.length不一定等于data.length
+            // if (dataArr.length === data.length) {
                 clearInterval(wait)
-
+                console.log(dataArr)
                 showTemplates(dataArr)
             }
 
-        }, 300)
+        }, 30)
     }
 
     var showTemplates = function(data) {
@@ -175,7 +179,7 @@ define(function(require) {
                 .attr('data-id', m.id)
                 .attr('src', m.thumbnail)
 
-            t.find('.description').text(m.name)
+            t.find('.description').html(m.name)
             t.find('.entry').attr('href', '/#!/detail?id=' + m.id)
 
             $('#waterfall').append(t)
@@ -208,3 +212,9 @@ define(function(require) {
 
     } ()
 })
+
+/**
+ * 2015.7.12
+ * 修改layoutTemplates，发现其中逻辑问题，已标注TODO
+ * 修改showTemplates，将修改名字的text方法替换为html
+ */
