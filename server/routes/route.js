@@ -17,7 +17,7 @@ module.exports = function(app) {
 
 	app.get('/', function(req, res) {
 
-        res.redirect('/index.html')
+        res.redirect('/')
 	})
 
     // app.get('/user/:id', user.getUser)
@@ -27,5 +27,15 @@ module.exports = function(app) {
     app.delete('/session', session.logout)
 
     app.get('/template', template.getTemplate)
+    // 404
+    app.get('*', function(req, res) {
 
+        res.redirect('/')
+    })
 }	// end module.exports
+
+/**
+ * 2015.7.13
+ * 在最后增加了404配置
+ * 修改了首页的加载路径，从/index.html改为/
+ */
