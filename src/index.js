@@ -7,7 +7,7 @@
  * @author  sunken
  * @date 2015.7.8
  */
-define(function(require) {
+define(function(require, exports) {
 
     var login = function(username, password, callback) {
 
@@ -25,74 +25,31 @@ define(function(require) {
         })
     }
 
-    $('#password').on('keypress', function(e) {
 
-        if (e.keyCode === 13) {
+    exports.init = function() {
 
-            var username = $('#username').val(),
-                password = $('#password').val()
+        $('#password').on('keypress', function(e) {
 
-            login(username, password, function(d) {
+            if (e.keyCode === 13) {
 
-                // 似乎只需要data.code，不需要data
-                if (d.code === 0) {
+                var username = $('#username').val(),
+                    password = $('#password').val()
 
-                    location.hash = '!/list'
-                }
-            })
-        }   // end if
-    })
+                login(username, password, function(d) {
+
+                    // 似乎只需要data.code，不需要data
+                    if (d.code === 0) {
+
+                        location.hash = '!/list'
+                    }
+                })
+            }   // end if
+        })
+    }
 })
 
 
-
-
-/*
-function testRegister() {
-
-    $.ajax({
-        url: '/user',
-        type: 'post',
-        data: {
-            email: 'sunken@admin.com',
-            nikename: 'sunken',
-            password: '123456',
-            group: 'admin'
-        },
-        success: function(data) {
-
-            console.log('ajax success')
-            console.log(data)
-        },
-        error: function(err) {
-
-            console.log('ajax error')
-            console.log(err)
-        }
-    })
-}
-
-function testLogin() {
-    
-    $.ajax({
-        url: '/session',
-        type: 'post',
-        data: {
-            email: 'sunken@admin.com',
-            password: '123456'
-        },
-        success: function(data) {
-
-            console.log('ajax success')
-            console.log(data)
-        },
-        error: function(err) {
-
-            console.log('ajax error')
-            console.log(err)
-        }
-    })
-}
-
-testLogin()
-*/
+/**
+ * 2015.7.13
+ * 增加了模块的init函数
+ */

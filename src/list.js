@@ -7,7 +7,7 @@
  * @author  sunken
  * @date 2015.7.9
  */
-define(function(require) {
+define(function(require, exports) {
 
     var setting = {
         models: [],
@@ -205,16 +205,13 @@ define(function(require) {
         })
     }
 
-    // 测试接口
-    ! function() {
-
-        init()
-
-    } ()
+    exports.init = init
 })
 
 /**
  * 2015.7.12
  * 修改layoutTemplates，发现其中逻辑问题，已标注TODO
  * 修改showTemplates，将修改名字的text方法替换为html
+ * 2015.7.13
+ * 对外导出了init函数，供route.js调用
  */
