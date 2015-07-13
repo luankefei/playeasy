@@ -2336,7 +2336,7 @@ Event.live = function(type, handler) {
 
                 if (nodes[i] === target) {
 
-                    console.log('live match loop: ' + loop)
+                    // console.log('live match loop: ' + loop)
 
                     return handler.call(target, e)
                 }
@@ -2403,6 +2403,29 @@ Event.off = function(type, handler) {
     }
 }
 
+// TODO: 新增的特殊事件接口，可能会改动
+Event.drag = function(dragStart, dragging, dragEnd) {
+
+    this.on('mousedown', function(e) {
+
+        dragStart && dragStart(e)
+
+        $(document).on('mousemove', function(e) {
+
+            dragging && dragging(e)
+        })
+
+        $(document).on('mouseup', function(e) {
+
+            dragEnd && dragEnd(e)
+
+            $(document).off('mousemove')
+            $(document).off('mouseup')
+        })
+    })
+}
+
+
 /**
  * 2015.5.25
  * 创建模块
@@ -2422,6 +2445,8 @@ Event.off = function(type, handler) {
  * 增加了declareEvent函数，代码从addEvent中分离
  * 2015.6.26
  * 修改了removeEvent，修复bug：删除事件后没有重置i
+ * 2015.7.13
+ * 增加了drag接口，传入三个参数，对应拖拽的三种状态
  */
 
 /**
@@ -2961,6 +2986,10 @@ Route.resetStatus = function() {
 Route.loadTemplate = function(url) {
 
     Http.get(url, function(data) {
+
+        console.clear()
+        console.log('%c\n \n O ever youthful, O ever weeping. \n\n', 'color:rgb(237, 68, 65);font-size:13px;font-family:Myriad Set Pro;')
+
         var view = $('#fs-view')
         var hash = Route.routes[Route.hash]
         
@@ -3170,6 +3199,8 @@ Route.provider = function(paths) {
  * 增加了Route.leave函数，该函数在离开模块时触发，优先于resetCss
  * 增加了Route.enter函数，该函数在进入模块时触发，在loadJS的回调中被调用
  * 修改了hashChange，根据type参数决定是否调用Route.leave函数
+ * 2015.7.13
+ * 修改了loadTemplate，增加了两行log操作
  */
  
 /**
@@ -3434,6 +3465,7 @@ mix($.fn, {
     off: Event.off,
     live: Event.live,
     ready: Event.ready,
+    drag: Event.drag,
     css: Css.init,
     position: Css.position,
     offset: Css.offset,

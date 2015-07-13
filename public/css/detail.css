@@ -76,7 +76,7 @@ div[data-control="text"] {
   position: fixed;
   top: 34px;
   width: 100%;
-  z-index: 1001;
+  z-index: 1;
 }
 #style-bar button {
   background-image: none;
@@ -224,13 +224,13 @@ div[data-control="text"] {
 }
 .wrapper > .container {
   background: #fff;
-  box-shadow: 0 1px 3px #777;
+  box-shadow: 1px 1px 1px #ccc;
   width: 1200px;
-  margin-left: 393px;
+  margin-left: 55px;
   margin-top: 55px;
 }
 #canvas section {
-  height: 1000px;
+  height: 800px;
   overflow: hidden;
   position: relative;
 }
@@ -489,6 +489,18 @@ div[data-control="text"] {
 #chart-bar {
   display: block;
 }
+.control {
+  border: 1px solid transparent;
+  position: absolute;
+}
+.control:hover {
+  cursor: pointer;
+}
+.control-selected {
+  border: 1px dashed #ed4441;
+  overflow: hidden;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
 /*
 
 
@@ -565,21 +577,6 @@ div[data-control="text"] {
 .block-selected 
     outline: 2px solid #ed4441
     z-index: 1
-
-
-.control 
-    border: 1px solid transparent
-    position: absolute
-
-
-.control:hover 
-    cursor: pointer
-
-
-.control-selected 
-    border: 1px dashed #ed4441
-    overflow: hidden
-    transform: matrix(1, 0, 0, 1, 0, 0)
 
 
 #zoom-upper-left:hover 
