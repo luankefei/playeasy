@@ -153,7 +153,7 @@ define(function(require) {
             // TODO: 如果图片url错误，imgReady不会触发回调，dataArr.length不一定等于data.length
             // if (dataArr.length === data.length) {
                 clearInterval(wait)
-                console.log(dataArr)
+                
                 showTemplates(dataArr)
             }
 

@@ -1,11 +1,11 @@
 
+'use strict'
 /**
  * @name  base.js
  * @description  全站通用模块
  * @author  sunken
  * @date  2015.7.10
  */
-
 var PE = (function() {
 
     var pe = {}
@@ -26,6 +26,18 @@ var PE = (function() {
         }
     }
 
+    // 验证用户是否已经登录
+    var validateUser = function() {
+
+        var user = window.currentUser
+
+        // 如果用户没有登录，user应该是undefined
+        if (location.hash === '' && user) {
+
+            location.hash = '!/list'
+        }
+    }
+
     // 从session中获取当前用户
     // 如果session中不存在用户，并且当前用户不在首页，跳回首页
     pe.getCurrentUser = function() {
@@ -35,11 +47,9 @@ var PE = (function() {
             if (d.code == 0) {
 
                 window.currentUser = d.data
-
-            } else if (window.location.hash !== '') {
-
-                window.location.href = '/'
             }
+
+            validateUser()
 
             // 初始化用户菜单
             initUserMenu()
