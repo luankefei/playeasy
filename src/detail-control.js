@@ -13,8 +13,6 @@ define(function(require, exports, module) {
         // text = require('./detail-text'),
         // image = require('./detail-image'),
         // button = require('./detail-button'),
-
-
     
     var control = {}
 

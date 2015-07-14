@@ -1,6 +1,7 @@
 <div id="start-bar" class="toolbar" class="clearfix"></div>
 
 <div id="add-bar"></div>
+<div id="left-bar"></div>
 <div id="chart-bar" class="controlbar" data-type="chart"></div>
 
 <div class="container">
@@ -8,64 +9,66 @@
         <section class="block-selected"></section>
     </div>
 
-    <div class="common">
-        <!--
-        <a id="scroll-top" href="javascript:;"></a>
-        <div id="tempArea"></div>
-        <div id="reference-x"></div>
-        <div id="reference-y"></div>
-
-        <div id="zoom-upper-left"></div>
-        <div id="zoom-upper-right"></div>
-        <div id="zoom-bottom-left"></div>
-        <div id="zoom-bottom-right"></div>
-        <div id="zoom-preview"></div>
-        <div id="zoom-rotate"></div>
-    
-        <div id="block-highlight">单击选中此页</div>
-    -->
-        <!-- 文本框工具条 -->
-        <!--
-        <div id="textbar" class="old-controlbar">
-            <div class="controlbar-group">
-                <div id="select-font-family" class="select font">
-                    <span class="select-value">微软雅黑</span>
-                    <i></i>
-                    <div class="select-wrapper">
-                        <div class="select-list">
-                            <ul>
-                                <li data-value="\5b8b\4f53">宋体</li>
-                                <li data-value="黑体">黑体</li>
-                                <li data-value="microsoft yahei">微软雅黑</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="controlbar-group">
-                <input id="select-font-size" class="size" type="text" value="12" />
-                <i class="px"></i>
-            </div>
-            <div class="controlbar-group">
-                <button id="font-bold" class="bold"></button>
-                <button id="font-italic" class="italic"></button>
-                <button id="font-underline" class="underline"></button>
-            </div>
-            <div class="controlbar-group align-group">
-                <button id="font-align-left" class="left"></button>
-                <button id="font-align-center" class="center"></button>
-                <button id="font-align-right" class="right"></button>
-                <button id="font-align-justify" class="justify"></button>
-            </div>
-            <div class="controlbar-group">
-                <button class="color">
-                    <span class="line"></span>
-                </button>
-                <button class="background">
-                    <span class="line"></span>
-                </button>
-            </div>
-        </div>
-        -->
-    </div>
+    <div class="common"></div>
 </div>
+
+
+
+<section class="new-connect">
+    <div class="bar">   
+        <ul>
+            <li class="selected"></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div class="page" data-id="1">
+        <h2>建立数据源连接</h2>
+        <dl class="clearfix">
+            <dt>HostName</dt>
+            <dd><input class="textbox" type="text"></dd>
+        </dl>
+        <dl class="clearfix">
+            <dt>Port</dt>
+            <dd><input class="textbox" type="text"></dd>
+        </dl>
+        <dl class="clearfix">
+            <dt>UserName</dt>
+            <dd><input class="textbox" type="text"></dd>
+        </dl>
+        <dl class="clearfix">
+            <dt>Password</dt>
+            <dd><input class="textbox" type="text"></dd>
+        </dl>
+
+        <button class="button" data-id="1">下一步</button>
+    </div>
+
+    <div class="page" data-id="2">
+        <h2>选择表</h2>
+        <dl class="clearfix">
+            <dt>Schema</dt>
+            <dd><input class="textbox" type="text"></dd>
+        </dl>
+        <dl class="clearfix">
+            <dt>Table</dt>
+            <dd><input class="textbox" type="text"></dd>
+        </dl>
+        
+        <button class="button" data-id="2">下一步</button>
+    </div>
+
+    <div class="page" data-id="3">
+        <h2>完成</h2>
+        
+        <dl class="clearfix">
+            <dt>
+                <button class="checkbox"></button>
+            </dt>
+            <dd>导入到数据托管中心</dd>
+        </dl>
+        
+        <button class="button" data-id="2">下一步</button>
+    </div>
+</section>

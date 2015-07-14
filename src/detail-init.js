@@ -30,6 +30,9 @@ define(function(require, exports, module) {
         // 添加顶部公共工具条
         $('#start-bar').load('/view/detail-startbar.html')
 
+        // 加载左侧数据工具条
+        $('#left-bar').load('/view/detail-leftbar.html')
+
         // 加载右侧工具条
         $('#chart-bar').load('/view/detail-chartbar.html')
     }
@@ -44,6 +47,36 @@ define(function(require, exports, module) {
             // var types = ['line', 'column', 'pie', 'bar', 'area', 'scatter', 'gauge', 'heatmap']
             // chart.type = types[parseInt(Math.random() * 100 % 7)]
             chart.init()
+        })
+
+        // 添加文本
+        $('#add-text').on('click', function() {
+
+            var text = control.create('text')
+
+            text.init()
+        })
+
+        // 展开左侧数据工具条
+        $('#add-data').on('click', function() {
+
+            $('#left-bar').show()
+
+        })
+
+        // 建立数据源连接
+        $('.new-connect button').on('click', function(e) {
+
+            var index = $(this).attr('data-id')
+            var currentPage = $('.new-connect .page[data-id="' + index + '"]')
+            var currentProgress = $('.new-connect .bar li.selected')
+                .next()
+                .addClass('selected')
+            
+            console.log(currentPage)
+
+            currentPage.hide()
+            currentPage.next().show()
         })
     }
 

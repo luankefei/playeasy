@@ -1,5 +1,6 @@
 sunkenRed = #ed4441
 sunkenLightRed = #ff6f76
+sunkenBorderColor = #b5b5b5
 
 div[data-control="text"] 
     outline: 0
@@ -135,6 +136,7 @@ div[data-control="text"]
     cursor: pointer
 
 
+/*
 #start-bar .tool-opacity 
     background: url("/public/image/alpha_100.png") no-repeat scroll 0 8px rgba(0, 0, 0, 0)
     float: right
@@ -162,7 +164,7 @@ div[data-control="text"]
 
 #start-bar .tool-opacity button:hover 
     box-shadow: none
-
+*/
 
 #start-bar .toolbar-tip ul li:nth-child(3) 
     margin-left: 36px
@@ -265,7 +267,7 @@ div[data-control="text"]
 .wrapper > .container 
     background: #fff
     box-shadow: 1px 1px 1px #ccc
-    width: 1200px
+    width: 1440px
     margin-left: 55px
     margin-top: 55px
 
@@ -383,9 +385,8 @@ div[data-control="text"]
 .block-bar #block-empty
     background-position: 0px -227px
 
-
 #left-bar 
-    background: none repeat scroll 0 0 #fff
+    background: #fff
     border: 1px solid #b5b5b5
     
     height: 90%
@@ -395,176 +396,115 @@ div[data-control="text"]
     position: fixed
     top: 88px
     width: 200px
-    // visibility: hidden
     z-index: 9
- 
-#left-bar .window > .canvas 
-    background: #bfbfbf
-    height: 200px
-    margin: 10px
+    // display: none
 
-#left-bar .window .view-box 
-    border: 1px solid #319b8d
-    height: 78px
-    left: 50px
-    position: absolute
-    top: 50px
-    width: 140px
-
-
-#left-bar .window .canvas img 
-    background: none repeat scroll 0 0 #fff
-    display: block
-    height: 100%
-    margin: 0 auto
+// 数据工具条的总标题
+#left-bar h2
+    font-size: 14px
+    height: 40px
+    line-height: 40px
     text-align: center
-    width: 50px
-
-
-#left-bar .template-wrap 
-    position: absolute
-    left: 0px
-    
-    width: 1000px
-    height: 100%
-
-
-#left-bar .template-wrap aside 
-    background: none repeat scroll 0 0 #2c2e32
-    float: left
-    height: 100%
-    width: 50px
-
-
-#left-bar .template-wrap aside ul li 
-    border-bottom: 1px solid #bfbfbf
+    background: sunkenLightRed
     color: #fff
-    height: 40px
-    line-height: 40px
-    text-align: center
 
-
-#left-bar aside ul li 
-    cursor: pointer
-
-
-#left-bar .template-wrap aside ul li.selected 
-    background-color: #00eaab
-
-
-#left-bar .template-wrap > section 
-    width: 1000px
-
-
-#left-bar .template-wrap > section h3 
-    border-bottom: 1px solid #bfbfbf
-    font-size: 12px
-    font-weight: normal
-    height: 40px
-    line-height: 40px
-    padding-left: 10px
-
-
-#left-bar .template-wrap > section .template-list 
+// 2015.7.14新增的上传样式
+#left-bar h3
+    font-size: 14px
+    padding-bottom: 20px
     
-    margin: 8px 0 8px 10px
-    width: 192px
+.upload
+    border-bottom: 1px solid sunkenBorderColor
+    padding: 30px 0px 30px 17px
+    
+#upload
+    margin-bottom: 20px
 
 
-#left-bar .template-wrap > section .template-list > li 
-    border: 1px solid #fff
-    position: relative
+#left-bar .data
+    padding: 30px 0px 30px 17px
+
+#left-bar .data dl
+    padding-bottom: 20px
+    
+#left-bar .data dt
+    font-weight: bold
+    padding-bottom: 15px
+    
+#left-bar .data dd ul li
+    height: 20px
+    line-height: 20px;
+    
+// 新建数据源连接的窗口和样式
+.new-connect
+    position: absolute
+    width: 692px
+    height: 443px
+    left: 0
+    top: 0
+    bottom: 0
+    right: 0
+    margin: auto
+    border: 1px solid sunkenBorderColor
+    border-top-color: sunkenRed
+
+// 顶部进度条
+.new-connect .bar
+    width: 100%
+    height: 4px
+
+.new-connect .bar ul
+    width: 100%
+    height: 100%
+
+.new-connect .bar ul li
     float: left
-    height: 50px
-    margin-bottom: 10px
-    margin-right: 6px
+    border-right: 1px solid #fff
+    width: 230px
+    height: 100%
+    background: #fff
+
+.new-connect .bar ul li.selected
+    background: sunkenRed
+
+.new-connect .bar ul li:last-child
+    border: none
+
+// 标题
+.new-connect h2
+    font-size: 18px
+    margin-bottom: 60px
+
+.new-connect .page
+    padding: 60px
+
+.new-connect .page dl
+    padding-bottom: 15px
+
+.new-connect .page dl dt
+    float: left
+    width: 100px
+    line-height: 30px
     
-    width: 50px
+.new-connect .page dl dd
+    float: left
+    width: 300px
 
+.new-connect .page input
+    width: 200px
 
-#left-bar .template-wrap > section .template-list > li>p 
-    display: none
-    position: absolute
-    color: #000
-    background-color: #E7F2EF
+.new-connect .page .button
+    // margin-top: 30px
     width: 120px
-    height: auto
-    padding: 5px
-    top: 40px
-    left: 0px
-    border: 1px solid #C2C2C2
-    z-index: 5
+    position: absolute
+    bottom: 60px
 
-
-#left-bar .template-wrap > section .template-list li svg 
-    height: 100%
-    width: 100%
-
-
-#left-bar .template-wrap > section .template-list li img 
-    width: 100%
-
-
-#upload-template-list li img 
-    height: 50px
-
-
-#left-bar .template-wrap[data-type="style"] > section .template-list li img 
-    margin-top: 1px
-
-
-#left-bar .template-wrap[data-type="image"] > section .template-list li:nth-child(3n),
-#left-bar .template-wrap[data-type="icon"] > section .template-list li:nth-child(3n) 
-    margin-right: 0
-
-
-#left-bar .template-wrap > section .template-list > li:hover 
-    border: 1px solid #319b8d
-    cursor: pointer
-
-
-#left-bar .template-wrap[data-type="chart"] aside,
-#left-bar .template-wrap[data-type="text"] aside,
-#left-bar .template-wrap[data-type="style"] aside 
+.new-connect .page
     display: none
 
+.new-connect .page[data-id="1"]
+    display: block
 
-#left-bar .template-wrap[data-type="chart"] section,
-#left-bar .template-wrap[data-type="text"] section,
-#left-bar .template-wrap[data-type="style"] section 
-    width: 100%
-    height: 100%
-
-
-#left-bar .template-wrap[data-type="chart"] section .template-list li 
-    text-align: center
-
-
-#left-bar .template-wrap section .style-template .template-list li 
-    height: 69px !important
-    text-align: center
-    width: 79px !important
-
-
-#left-bar .template-wrap section .style-template .template-list li:nth-child(2n) 
-    margin-right: 0 !important
-
-
-#left-bar .template-wrap[data-type="chart"] section .template-list li:nth-child(3n) 
-    margin-right: 0 !important
-
-#template-list-wrap>div 
-    width: 201px
-    height: 100%
-    background-color: #fff
-
-    position: absolute
-    visibility: hidden
-    left: -100%
-
-.template-h 
-    height: 39px
-    
 #chart-bar
     display: block
 
@@ -572,10 +512,8 @@ div[data-control="text"]
     border: 1px solid transparent
     position: absolute
 
-
 .control:hover 
     cursor: pointer
-
 
 .control-selected 
     border: 1px dashed #ed4441
