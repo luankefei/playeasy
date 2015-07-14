@@ -29,7 +29,7 @@ $.route()
             '/public/css/detail.css',
             '/public/css/detail-chartbar.css',
             '/public/css/detail-data.css',
-            '/public/css/detail-startbar.css',
+            '/public/css/detail-toolbar.css',
             '/public/css/detail-addbar.css',
             '/public/css/detail-blockbar.css'
         ]
