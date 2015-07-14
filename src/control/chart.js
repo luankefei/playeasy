@@ -14,7 +14,7 @@ define(function(require, exports, module) {
     function Chart() {
 
         // 图表类型
-        this.type = 'pie'
+        this.type = 'bar'
         // dom对象
         this.target = null
         // highcharts对象

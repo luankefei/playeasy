@@ -24,18 +24,15 @@ define(function(require, exports) {
     exports.init = function() {
 
         // 加载页面的各个部分
-        $.get('/view/detail-chartbar.html', function(d) {
-
-            $('#chart-bar').html(d)
-        })
+        $('#chart-bar').load('/view/detail-chartbar.html')
 
         // 创建图表
         $('#add-chart').on('click', function() {
 
-            var types = ['line', 'column', 'pie', 'bar', 'area', 'scatter', 'gauge', 'heatmap']
+            // var types = ['line', 'column', 'pie', 'bar', 'area', 'scatter', 'gauge', 'heatmap']
             var chart = control.create('chart')
 
-            chart.type = types[parseInt(Math.random() * 100 % 7)]
+            // chart.type = types[parseInt(Math.random() * 100 % 7)]
             chart.init()
         })
 
