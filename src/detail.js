@@ -10,7 +10,7 @@
 define(function(require, exports) {
 
     var control = require('./detail-control')
-
+    var init = require('./detail-init')
 
     ! function() {
 
@@ -22,16 +22,15 @@ define(function(require, exports) {
     } ()
 
     exports.init = function() {
-
-        // 加载页面的各个部分
-        $('#chart-bar').load('/view/detail-chartbar.html')
+        
+        // 初始化页面各部分
+        init.loadPage()
 
         // 创建图表
         $('#add-chart').on('click', function() {
 
-            // var types = ['line', 'column', 'pie', 'bar', 'area', 'scatter', 'gauge', 'heatmap']
             var chart = control.create('chart')
-
+            // var types = ['line', 'column', 'pie', 'bar', 'area', 'scatter', 'gauge', 'heatmap']
             // chart.type = types[parseInt(Math.random() * 100 % 7)]
             chart.init()
         })
