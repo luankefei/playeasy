@@ -9,31 +9,22 @@
  */
 define(function(require, exports) {
 
-    var control = require('./detail-control')
     var init = require('./detail-init')
 
-    ! function() {
-
-        // 加载highcharts
-        seajs.use('/public/lib/adapters/standalone-framework.src.js', function() {
-            seajs.use(['/public/lib/highcharts.src.js'])
-        })
-
-    } ()
-
     exports.init = function() {
-        
+
+        // 初始化图表库
+        init.loadChartLib()
+
         // 初始化页面各部分
         init.loadPage()
 
-        // 创建图表
-        $('#add-chart').on('click', function() {
+        // TODO: 初始化页面工具条事件，应该在loadPage的回调中执行
+        setTimeout(function() {
 
-            var chart = control.create('chart')
-            // var types = ['line', 'column', 'pie', 'bar', 'area', 'scatter', 'gauge', 'heatmap']
-            // chart.type = types[parseInt(Math.random() * 100 % 7)]
-            chart.init()
-        })
+            init.bindToolEvent()
+
+        }, 1000)
 
         // 控件的拖拽事件
         $('.control-selected').live('mousedown', function(e) {
