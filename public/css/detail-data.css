@@ -9,6 +9,7 @@
   top: 88px;
   width: 200px;
   z-index: 9;
+  display: none;
 }
 #left-bar h2 {
   font-size: 14px;

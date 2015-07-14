@@ -20,11 +20,11 @@ define(function(require, exports) {
         init.loadPage()
 
         // TODO: 初始化页面工具条事件，应该在loadPage的回调中执行
-        setTimeout(function() {
+        // setTimeout(function() {
 
-            init.bindToolEvent()
+        //     init.bindToolEvent()
 
-        }, 1000)
+        // }, 1000)
 
         // 控件的拖拽事件
         $('.control-selected').live('mousedown', function(e) {
