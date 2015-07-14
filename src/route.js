@@ -27,7 +27,11 @@ $.route()
         js: '/src/detail.js',
         css: [
             '/public/css/detail.css',
-            '/public/css/chartbar.css',
+            '/public/css/detail-chartbar.css',
+            '/public/css/detail-data.css',
+            '/public/css/detail-startbar.css',
+            '/public/css/detail-addbar.css',
+            '/public/css/detail-blockbar.css'
         ]
     })
     .when('/user', {

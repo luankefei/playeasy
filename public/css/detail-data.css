@@ -1,0 +1,115 @@
+#left-bar {
+  background: #fff;
+  border: 1px solid #b5b5b5;
+  height: 90%;
+  left: 54px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  position: fixed;
+  top: 88px;
+  width: 200px;
+  z-index: 9;
+}
+#left-bar h2 {
+  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: #ff6f76;
+  color: #fff;
+}
+#left-bar h3 {
+  font-size: 14px;
+  padding-bottom: 20px;
+}
+.upload {
+  border-bottom: 1px solid #b5b5b5;
+  padding: 30px 0px 30px 17px;
+}
+#upload {
+  margin-bottom: 20px;
+}
+#left-bar .data {
+  padding: 30px 0px 30px 17px;
+}
+#left-bar .data dl {
+  padding-bottom: 20px;
+}
+#left-bar .data dt {
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+#left-bar .data dd ul li {
+  height: 20px;
+  line-height: 20px;
+}
+.new-connect {
+  position: absolute;
+  width: 692px;
+  height: 443px;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  border: 1px solid #b5b5b5;
+  border-top-color: #ed4441;
+}
+.new-connect .bar {
+  width: 100%;
+  height: 4px;
+}
+.new-connect .bar ul {
+  width: 100%;
+  height: 100%;
+}
+.new-connect .bar ul li {
+  float: left;
+  border-right: 1px solid #fff;
+  width: 230px;
+  height: 100%;
+  background: #fff;
+}
+.new-connect .bar ul li.selected {
+  background: #ed4441;
+}
+.new-connect .bar ul li:last-child {
+  border: none;
+}
+.new-connect h2 {
+  font-size: 18px;
+  margin-bottom: 60px;
+}
+.new-connect .page {
+  padding: 60px;
+}
+.new-connect .page dl {
+  padding-bottom: 15px;
+}
+.new-connect .page dl dt {
+  float: left;
+  width: 100px;
+  line-height: 30px;
+}
+.new-connect .page dl dd {
+  float: left;
+  width: 300px;
+}
+.new-connect .page input {
+  width: 200px;
+}
+.new-connect .page .button {
+  width: 120px;
+  position: absolute;
+  bottom: 60px;
+}
+.new-connect .page {
+  display: none;
+}
+.new-connect .page[data-id="1"] {
+  display: block;
+}
+.new-connect .page[data-id="3"] label {
+  line-height: 20px;
+  padding-left: 12px;
+}

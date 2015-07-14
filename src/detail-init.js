@@ -61,7 +61,6 @@ define(function(require, exports, module) {
         $('#add-data').on('click', function() {
 
             $('#left-bar').show()
-
         })
 
         // 建立数据源连接
@@ -72,8 +71,6 @@ define(function(require, exports, module) {
             var currentProgress = $('.new-connect .bar li.selected')
                 .next()
                 .addClass('selected')
-            
-            console.log(currentPage)
 
             currentPage.hide()
             currentPage.next().show()
