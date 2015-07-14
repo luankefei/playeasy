@@ -38,6 +38,7 @@ define(function(require, exports, module) {
     }
 
     // 初始化页面工具条事件
+    // TODO: 很多临时处理，需要重构
     init.bindToolEvent = function() {
 
         // 创建图表
@@ -63,8 +64,16 @@ define(function(require, exports, module) {
             $('#left-bar').show()
         })
 
-        // 建立数据源连接
-        $('.new-connect button').on('click', function(e) {
+        // 建立数据库连接：开始
+        $('#new-connect').on('click', function() {
+
+            $('.new-connect').show()
+
+            PE.toggleShadow()
+        })
+
+        // 建立数据源连接：下一页
+        $('.new-connect button:not([data-id="3"])').on('click', function(e) {
 
             var index = $(this).attr('data-id')
             var currentPage = $('.new-connect .page[data-id="' + index + '"]')
@@ -74,6 +83,14 @@ define(function(require, exports, module) {
 
             currentPage.hide()
             currentPage.next().show()
+        })
+
+        // 建立数据源连接：完成
+        $('.new-connect button[data-id="3"]').on('click', function(e) {
+
+            $('.new-connect').hide()
+
+            PE.toggleShadow()
         })
     }
 

@@ -5,7 +5,7 @@
   position: absolute;
   top: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 1000;
   padding-right: 20px;
 }
 #you_cant_see_me_div {
@@ -17,13 +17,13 @@
   top: 0;
   width: 100%;
 }
-/* .is_overflow_box 
-      height: 100%
-      margin-left: -8px
-      overflow: hidden
-      position: absolute
-      width: 100%
-    */
+.is_overflow_box {
+  height: 100%;
+  margin-left: -8px;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+}
 .select {
   background: #fff;
   float: left;
@@ -40,7 +40,7 @@
   line-height: 28px;
   padding-left: 5px;
 }
-.slect-value-width {
+.selct-value-width {
   width: 127px;
 }
 .select i {

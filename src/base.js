@@ -56,6 +56,29 @@ var PE = (function() {
         })
     }
 
+    // 显示遮罩层
+    pe.toggleShadow = function() {
+
+        var body = document.getElementsByTagName('body')[0]
+        var layer = document.getElementById('you_cant_see_me')
+        var state = layer.style.display
+
+        if (state === 'none' || state ==='') {
+            
+            // layer.style.height = document.documentElement.scrollHeight + 'px'
+            layer.style.height = screen.availHeight + 'px'
+            layer.style.top = body.scrollTop
+            layer.style.display = 'block'
+
+            body.setAttribute('class', 'is_overflow_box')
+
+        } else {
+
+            body.setAttribute('class', 'body_normal')
+            layer.style.display = 'none'
+        }
+    }
+
     return pe
 
 } ())
