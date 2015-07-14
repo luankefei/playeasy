@@ -10,7 +10,7 @@ var gulp = require('gulp'),
 // Lint JS
 // TODO
 gulp.task('lint', function() {
-    return gulp.src('src/*.js')
+    return gulp.src('src/**')
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
 })
@@ -38,8 +38,8 @@ livereload.listen()
 gulp.task('watch', function() {    
 
     gulp.watch('index.html', ['reload'])
-    gulp.watch('view/*.html', ['reload'])
-    gulp.watch('src/*.js', ['lint', 'reload'])
+    gulp.watch('view/**', ['reload'])
+    gulp.watch('src/**', ['lint', 'reload'])
     gulp.watch('stylus/*.styl', ['stylus', 'reload'])
 })
 
