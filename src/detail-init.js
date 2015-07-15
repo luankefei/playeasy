@@ -128,8 +128,16 @@ define(function(require, exports, module) {
         // 本地上传
         $('#upload').on('change', function() {
 
-            console.log($(this).val())
+            var reader = new FileReader()
 
+            reader.readAsText(this.files[0])
+
+            reader.onload = function() {
+
+                var text = reader.result
+
+                console.log(text)
+            }
 
             // $.ajax({
 
