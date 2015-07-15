@@ -93,64 +93,9 @@ define(function(require, exports, module) {
         // 展开左侧数据工具条
         $('#add-data').on('click', function() {
 
+            var data = require('./detail-data')
+            
             $('#left-bar').show()
-        })
-
-        // 建立数据库连接：开始
-        $('#new-connect').on('click', function() {
-
-            $('.new-connect').show()
-
-            PE.toggleShadow()
-        })
-
-        // 建立数据源连接：下一页
-        $('.new-connect button:not([data-id="3"])').on('click', function(e) {
-
-            var index = $(this).attr('data-id')
-            var currentPage = $('.new-connect .page[data-id="' + index + '"]')
-            var currentProgress = $('.new-connect .bar li.selected')
-                .next()
-                .addClass('selected')
-
-            currentPage.hide()
-            currentPage.next().show()
-        })
-
-        // 建立数据源连接：完成
-        $('.new-connect button[data-id="3"]').on('click', function(e) {
-
-            $('.new-connect').hide()
-
-            PE.toggleShadow()
-        })
-
-        // 本地上传
-        $('#upload').on('change', function() {
-
-            var reader = new FileReader()
-
-            reader.readAsText(this.files[0])
-
-            reader.onload = function() {
-
-                var text = reader.result
-
-                console.log(text)
-            }
-
-            // $.ajax({
-
-            //     url: '/file',
-            //     type: 'post',
-            //     param: {
-
-            //     },
-            //     success: function(d) {
-
-            //         console.log(d)
-            //     }
-            // })
         })
     }
 
@@ -160,4 +105,6 @@ define(function(require, exports, module) {
 /**
  * 2015.7.14
  * 增加LoadTimer类，负责页面加载的流程控制
+ * 2015.7.15
+ * 重构了bindToolEvent，在add-data首次点击时，引入数据模块
  */
