@@ -81,6 +81,7 @@ define(function(require, exports) {
         type = MINE_TYPE[type]
         type = type[0].toUpperCase() + type.substring(1)
 
+        // 根据type调用不同类的初始化，obj是类的实例对象
         var obj = eval('new ' + type)
 
         obj.text = text
@@ -88,8 +89,6 @@ define(function(require, exports) {
         return fileConverter(obj)
     }
 })
-
-
 
 // *.csv   text/csv
 // *.doc   application/msword

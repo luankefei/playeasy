@@ -11,6 +11,35 @@ define(function(require, exports) {
 
     var convert = require('./detail-convert')
 
+    // 将上传好的数据字段，生成html代码并显示在列表的左侧
+    var displayOnDataList = function(name, data) {
+
+        var wrap = $('#left-bar > .data')
+        
+        var dl = $.create('dl'),
+            dt = $.create('dt'),
+            dd = $.create('dd'),
+            ul = $.create('ul')
+
+        dl.append(dt)
+            .append(dd)
+            .data(data)
+
+        dt.html(name)
+
+        var html = ''
+
+        for (var k in data[0]) {
+
+            html = html + '<li>' + k + '</li>'
+        }
+
+        ul.html(html)
+        dd.append(ul)
+        
+        wrap.append(dl)
+    }
+
     var handleUpload = function() {
 
         var reader = new FileReader()
@@ -20,12 +49,12 @@ define(function(require, exports) {
 
         reader.onload = function() {
 
-            var text = convert.format(reader.result, file.type)
+            var data = convert.format(reader.result, file.type)
 
-            console.log(text)
+            // 显示在数据列表上
+            displayOnDataList(file.name, data)
         }
     }
-
 
     // 建立数据库连接：开始
     $('#new-connect').on('click', function() {

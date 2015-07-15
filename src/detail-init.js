@@ -70,8 +70,10 @@ define(function(require, exports, module) {
         $('#chart-bar').load('/view/detail-chartbar.html', loadCallback)
     }
 
-    // 初始化页面工具条事件
-    // TODO: 很多临时处理，需要重构
+    // 初始化页面基础事件
+    // 数据工具条在点击数据按钮才激活
+    // 顶部工具条，在创建控件后才激活
+    // 右侧工具条，在选中控件后才激活
     init.bindToolEvent = function() {
 
         // 创建图表
