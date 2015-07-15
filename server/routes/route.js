@@ -9,7 +9,8 @@
  */
 var user = require('./user'),
     session = require('./session'),
-    template = require('./template')
+    template = require('./template'),
+    file = require('./file')
 
 // 登录是创建currentUser
 // 注册是创建user
@@ -20,13 +21,21 @@ module.exports = function(app) {
         res.redirect('/')
 	})
 
+    // 注册
+    // app.post('/user', user.register)
+
+    // 用户管理
     // app.get('/user/:id', user.getUser)
-    // 测试接口
     app.get('/session', session.getCurrentUser)
     app.post('/session', session.login)
     app.delete('/session', session.logout)
 
     app.get('/template', template.getTemplate)
+
+    // 上传
+    app.post('/file', file.upload)
+
+
     // 404
     app.get('*', function(req, res) {
 

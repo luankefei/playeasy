@@ -124,6 +124,26 @@ define(function(require, exports, module) {
 
             PE.toggleShadow()
         })
+
+        // 本地上传
+        $('#upload').on('change', function() {
+
+            console.log($(this).val())
+
+
+            // $.ajax({
+
+            //     url: '/file',
+            //     type: 'post',
+            //     param: {
+
+            //     },
+            //     success: function(d) {
+
+            //         console.log(d)
+            //     }
+            // })
+        })
     }
 
     module.exports = init
