@@ -9,6 +9,8 @@
  */
 define(function(require, exports) {
 
+    var convert = require('./detail-convert')
+
     // 建立数据库连接：开始
     $('#new-connect').on('click', function() {
 
@@ -42,23 +44,19 @@ define(function(require, exports) {
     $('#upload').on('change', function() {
 
         var reader = new FileReader()
+        var file = this.files[0]
 
         reader.readAsText(this.files[0])
 
         reader.onload = function() {
 
-            var text = encodeURI(reader.result)
+            var test = convert.format(reader.result, file.type)
 
-            // 先按换行符分割
-            text = text.split('%0D')
-            text.forEach(function(v, i) {
 
-                // 将每一行解码，再按逗号分割
-                text[i] = decodeURI(v).split(',')
-            })
+            console.log(test)
 
             // text转成了二维数组
-            console.log(text)
+            // console.log(text)
         }
     })
 })
