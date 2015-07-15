@@ -9,6 +9,7 @@
   top: 88px;
   width: 200px;
   z-index: 9;
+  display: none;
 }
 #left-bar h2 {
   font-size: 14px;
@@ -35,11 +36,11 @@
 #left-bar .data dl {
   padding-bottom: 20px;
 }
-#left-bar .data dt {
+#left-bar .data dl dt {
   font-weight: bold;
   padding-bottom: 15px;
 }
-#left-bar .data dd ul li {
+#left-bar .data dl dd ul li {
   height: 20px;
   line-height: 20px;
 }
@@ -85,6 +86,7 @@
 }
 .new-connect .page {
   padding: 60px;
+  display: none;
 }
 .new-connect .page dl {
   padding-bottom: 15px;
@@ -105,9 +107,6 @@
   width: 120px;
   position: absolute;
   bottom: 60px;
-}
-.new-connect .page {
-  display: none;
 }
 .new-connect .page[data-id="1"] {
   display: block;

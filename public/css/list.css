@@ -11,6 +11,13 @@
   padding-bottom: 50px;
   position: relative;
 }
+.banner {
+  background-color: #ff6f76;
+  background-image: url("../image/list_banner.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100px;
+}
 .template {
   box-shadow: 0 0 6px #ccc;
   display: inline-block;
@@ -91,11 +98,4 @@
   background: #ff6f76;
   cursor: pointer;
   color: #fff;
-}
-.banner {
-  background-color: #ff6f76;
-  background-image: url("../image/list_banner.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100px;
 }

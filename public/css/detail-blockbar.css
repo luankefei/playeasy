@@ -19,30 +19,30 @@
   color: #fff;
   cursor: pointer;
 }
-.block-bar li span {
+.block-bar li:hover span {
   display: none;
 }
-.block-bar #block-up {
+#block-up {
   background-position: 0px 0px;
 }
-.block-bar #block-down {
+#block-down {
   background-position: 0px -31px;
 }
-.block-bar #block-bac {
+#block-bac {
   background-position: 0px -62px;
 }
-.block-bar #block-add {
+#block-add {
   background-position: 0px -94px;
 }
-.block-bar #block-copy {
+#block-copy {
   background-position: 0px -125px;
 }
-.block-bar #block-delete {
+#block-delete {
   background-position: 0px -156px;
 }
-.block-bar #block-size {
+#block-size {
   background-position: 0px -186px;
 }
-.block-bar #block-empty {
+#block-empty {
   background-position: 0px -227px;
 }
