@@ -15,6 +15,7 @@ define(function(require, exports) {
         'application/json': 'json'
     }
 
+    // csv文件类
     function Csv() {
 
         this.text = null
@@ -50,10 +51,21 @@ define(function(require, exports) {
                 json.push(obj)
             })
 
-            return text
+            return json
         }
     }
 
+    // json文件类
+    function Json() {
+
+        this.text = null
+        this.convert = function() {
+
+            return JSON.parse(this.text)
+        }
+    }
+
+    // 多态实现
     function fileConverter(obj) {
 
         if (obj.convert instanceof Function) {
@@ -64,7 +76,6 @@ define(function(require, exports) {
 
     exports.format = function(text, type) {
 
-        // var type
         text = encodeURI(text)
         // 按照mine type取出文件类型，并进行首字母大写转换
         type = MINE_TYPE[type]
