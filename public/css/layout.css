@@ -24,11 +24,11 @@ header .logo img {
 nav {
   height: 100%;
 }
-nav > .search {
+nav .search {
   float: left;
   margin-left: 20px;
 }
-nav > .search > input {
+nav .search input {
   height: 24px;
   width: 286px;
   border: 1px solid #c9c9c6;
@@ -37,10 +37,10 @@ nav > .search > input {
   margin-top: 4px;
   margin-left: 50px;
 }
-nav > ul {
+nav ul {
   float: right;
 }
-nav > ul > li {
+nav ul li {
   height: 100%;
   display: inline-block;
   line-height: 34px;
@@ -51,7 +51,7 @@ nav ul li a {
   margin-left: 10px;
   margin-right: 10px;
 }
-nav > .user-wrap {
+nav .user-wrap {
   float: right;
   height: 100%;
   width: 200px;
@@ -87,7 +87,7 @@ footer {
   position: relative;
   width: 100px;
 }
-#account > #user-name {
+#account #user-name {
   background-image: url("/resource/images/select.png");
   background-repeat: no-repeat;
   background-position: 78px 14px;
@@ -100,17 +100,17 @@ footer {
   display: none;
   z-index: 1003;
 }
-#account-menu-list > ul > li {
+#account-menu-list ul li {
   line-height: 30px;
   text-align: center;
 }
-#account-menu-list > ul > li:hover {
-  background: #eda7bb;
-}
-#account-menu-list > ul > li > a {
+#account-menu-list ul li a {
   display: block;
   height: 30px;
 }
-#account-menu-list > ul > li > a:hover {
+#account-menu-list ul li a:hover {
   color: #fff;
+}
+#account-menu-list ul li:hover {
+  background: #eda7bb;
 }

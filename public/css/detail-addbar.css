@@ -21,13 +21,13 @@
   text-align: center;
 }
 #add-bar li.selected {
-  background-color: #ed4441;
+  background-color: sunkenRed;
   background-image: url("/public/image/floatbar-hover.png");
   background-repeat: no-repeat;
   color: #fff;
 }
 #add-bar li:hover {
-  background-color: #ff6f76;
+  background-color: sunkenLightRed;
   background-image: url("/public/image/floatbar-hover.png");
   background-repeat: no-repeat;
   color: #fff;
