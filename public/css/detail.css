@@ -17,11 +17,10 @@ div[data-control="text"] {
   border: 1px solid transparent;
   position: absolute;
 }
-.control:hover {
-  cursor: pointer;
-}
-.control-selected {
+.control.selected {
   border: 1px dashed #ed4441;
   overflow: hidden;
-  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+.control:hover {
+  cursor: pointer;
 }

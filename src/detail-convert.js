@@ -31,6 +31,7 @@ define(function(require, exports) {
             // 获取表头
             text[0].split(',').forEach(function(v) {
 
+                // keys.push(decodeURI(v))
                 keys.push(v)
             })
 
@@ -45,6 +46,7 @@ define(function(require, exports) {
                 text[i].forEach(function(v, i) {
 
                     obj[keys[i]] = v
+                    // obj[decodeURI(keys[i])] = v
                 })
 
                 // 将obj追加到json数组中
@@ -77,6 +79,7 @@ define(function(require, exports) {
     exports.format = function(text, type) {
 
         text = encodeURI(text)
+
         // 按照mine type取出文件类型，并进行首字母大写转换
         type = MINE_TYPE[type]
         type = type[0].toUpperCase() + type.substring(1)

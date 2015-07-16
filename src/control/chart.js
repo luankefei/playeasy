@@ -46,18 +46,22 @@ define(function(require, exports, module) {
                 }
             })
         }
-        
+
+        // TODO: 多控件公用的代码        
         this.init = function() {
 
             this.target = $.create('div')
                 .addClass('control')
-                .addClass('control-selected')
+                .addClass('selected')
                 .css('position', 'absolute')
                 .css('top', 0)
                 .css('left', 0)
                 .appendTo('.block-selected')
 
             this.draw()
+
+            // 返回dom对象
+            return this.target[0]
         }
 
         return this

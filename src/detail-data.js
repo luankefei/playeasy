@@ -81,6 +81,7 @@ define(function(require, exports) {
     $('.new-connect button[data-id="3"]').on('click', function(e) {
 
         $('.new-connect').hide()
+        // TODO: 重置整个数据源配置流程
 
         PE.toggleShadow()
     })

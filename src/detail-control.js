@@ -22,10 +22,35 @@ define(function(require, exports, module) {
         this.sarial = null
     }
 
+    // 重置控件的选中状态
+    control.initSelected = function(target) {
+        
+        var selected = $('.control.selected')
+
+        if (selected.length > 0) {
+
+            selected.removeClass('selected')
+        }
+
+        // case 2: 当前控件未被选中，进入选中流程
+        if (!$(target).hasClass('selected')) {
+
+            $(target).addClass('selected')
+
+            return false
+
+        }
+
+        // case 2: 当前控件已被选中
+        return true
+    }
+
+    // 在create时，直接调用初始化，返回创建的dom对象
     control.create = function(type) {
 
-        // TODO: eval
-        return eval('new ' + type[0].toUpperCase() + type.substring(1) + '()')
+        var obj = eval('new ' + type[0].toUpperCase() + type.substring(1) + '()')
+
+        return obj.init()
     }
    
     module.exports = control
@@ -36,4 +61,7 @@ define(function(require, exports, module) {
  * 增加控件的创建流程
  * 增加控件的拖拽事件
  * 增加对Highcharts的调用
+ * 2015.7.16
+ * 增加initControlSelected函数，供detail模块调用，用来初始化控件选中状态
+ * 修改了control.create函数，创建对象后，直接调用初始化
  */

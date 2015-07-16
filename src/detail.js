@@ -10,6 +10,8 @@
 define(function(require, exports) {
 
     var init = require('./detail-init')
+        // toolbar = require('./detail-toolbar'),
+        // controlbar = require('./detail-controlbar')
 
     exports.init = function() {
 
@@ -19,23 +21,19 @@ define(function(require, exports) {
         // 初始化页面各部分
         init.loadPage()
 
-        // TODO: 初始化页面工具条事件，应该在loadPage的回调中执行
-        // setTimeout(function() {
-
-        //     init.bindToolEvent()
-
-        // }, 1000)
-
         // 控件的拖拽事件
-        $('.control-selected').live('mousedown', function(e) {
+        $('.control').live('mousedown', function(e) {
 
             var target = $(this)
             var mouseStart = { x: e.pageX, y: e.pageY },
-                controlStart = { 
+                controlStart = {
                     x: target.position().left,
                     y: target.position().top
-                }
-            
+                }                
+
+            // 选中当前控件
+            init.selectControl(this)
+
             $(document).on('mousemove', function(e) {
 
                 var x = e.pageX - mouseStart.x + controlStart.x + 'px',
@@ -61,4 +59,9 @@ define(function(require, exports) {
  * 增加控件的拖拽事件
  * 增加对Highcharts的调用
  * 将控件部分代码移动到了detail-control文件中，通过require引入
+ * 2015.7.14
+ * 引入了detail-init模块
+ * 重构了部分代码
+ * 2015.7.16
+ * 修改了控件拖拽事件，mousedown时会调用init模块的selectControl
  */

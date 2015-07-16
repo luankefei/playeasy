@@ -9,9 +9,11 @@
  */
 define(function(require, exports, module) {
 
-    var control = require('./detail-control')
+    var control = require('./detail-control'),
+        toolbar = require('./detail-toolbar')
 
     var init = {}
+
     var LoadTimer = function() {
 
         this.count = 0
@@ -29,6 +31,25 @@ define(function(require, exports, module) {
         }
 
         return this
+    }
+
+    // 选中控件
+    init.selectControl = function(target) {
+
+        // 重置之前的选中状态
+        var state = control.initSelected(target)
+
+        // 当前元素未被选中，进入选中流程
+        if (!state) {
+
+            // 重置主工具条
+            toolbar.init(target)
+
+            // 重置控件工具条
+            // TODO: 根据不同类型的控件，重置不同的工具条
+
+            //controlbar.init(this)
+        }
     }
 
     init.loadChartLib = function() {
@@ -77,19 +98,28 @@ define(function(require, exports, module) {
     init.bindToolEvent = function() {
 
         // 创建图表
+        // TODO: 一大堆创建控件需要重构
         $('#add-chart').on('click', function() {
 
             var chart = control.create('chart')
 
-            chart.init()
+            // init函数返回的是dom对象
+            // chart = chart.init()
+
+            // 传入dom对象，选中当前控件
+            init.selectControl(chart)
         })
 
         // 添加文本
+        // TODO: 与生成图表相同的逻辑
         $('#add-text').on('click', function() {
 
-            var text = control.create('text')
+            // var text = control.create('text')
 
-            text.init()
+            // text.init()
+
+            // 选中当前控件
+            // init.selectControl(text)
         })
 
         // 展开左侧数据工具条
@@ -108,5 +138,8 @@ define(function(require, exports, module) {
  * 2015.7.14
  * 增加LoadTimer类，负责页面加载的流程控制
  * 2015.7.15
+ * 引入了detail-control模块
  * 重构了bindToolEvent，在add-data首次点击时，引入数据模块
+ * 2015.7.16
+ * 引入了toolbar模块
  */
