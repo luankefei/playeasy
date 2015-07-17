@@ -10,7 +10,8 @@
 define(function(require, exports, module) {
 
     var control = require('./detail-control'),
-        toolbar = require('./detail-toolbar')
+        toolbar = require('./detail-toolbar'),
+        controlbar = require('./detail-controlbar')
 
     var init = {}
 
@@ -47,8 +48,7 @@ define(function(require, exports, module) {
 
             // 重置控件工具条
             // TODO: 根据不同类型的控件，重置不同的工具条
-
-            //controlbar.init(this)
+            controlbar.init(target)
         }
     }
 

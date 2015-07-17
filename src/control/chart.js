@@ -53,6 +53,7 @@ define(function(require, exports, module) {
             this.target = $.create('div')
                 .addClass('control')
                 .addClass('selected')
+                .attr('data-type', 'chart')
                 .css('position', 'absolute')
                 .css('top', 0)
                 .css('left', 0)
