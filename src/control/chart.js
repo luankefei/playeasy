@@ -19,38 +19,47 @@ define(function(require, exports, module) {
         this.target = null
         // highcharts对象
         this.chart = null
+        // 绘图数据
+        this.data = {
+            chart: {
+                renderTo: null,
+                type: this.type
+            },
+
+            xAxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            },
+
+            series: [{
+                data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+            }],
+            colors: ['#ed4441', '#eda7bb', '#ff6f76'],
+            title: '',
+            credits: {
+                enabled: false
+            },
+            legend: {
+                enabled: false
+            }
+        }
 
         this.draw = function() {
 
-            this.chart = new Highcharts.Chart({
-                chart: {
-                    renderTo: this.target[0],
-                    type: this.type
-                },
+            // 绘制前设置renderTo属性，否则会初始化为默认值null
+            this.data.chart.renderTo = this.target
 
-                xAxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                },
+            this.chart = new Highcharts.Chart(this.data)
 
-                series: [{
-                    data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-                }],
-                colors: ['#ed4441', '#eda7bb', '#ff6f76'],
-                title: '',
-                credits: {
-                    enabled: false
-                },
-                legend: {
-                    enabled: false
-                }
-            })
+            // 将图表对象与dom对象关连
+            // $(this.target).data('data', this.data) 
+            $(this.target).data('chart', this.chart)
         }
 
         // TODO: 多控件公用的代码        
         this.init = function() {
 
-            this.target = $.create('div')
+            var target = $.create('div')
                 .addClass('control')
                 .addClass('selected')
                 .attr('data-type', 'chart')
@@ -59,10 +68,12 @@ define(function(require, exports, module) {
                 .css('left', 0)
                 .appendTo('.block-selected')
 
+            this.target = target[0]
+
             this.draw()
 
             // 返回dom对象
-            return this.target[0]
+            return this.target
         }
 
         return this
@@ -78,4 +89,7 @@ define(function(require, exports, module) {
  * 增加控件的创建流程
  * 增加控件的拖拽事件
  * 增加对Highcharts的调用
+ * 2015.7.17
+ * 增加了data属性，绘图数据将记录在这里
+ * 修改了draw函数，绘图结束后，将图表对象与dom对象关连
  */

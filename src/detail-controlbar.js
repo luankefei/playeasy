@@ -22,7 +22,7 @@ define(function(require, exports, module) {
         var map = {
 
             'chart': (function() {
-                return chartbar.init()
+                return chartbar.init(target)
             })(),
 
             'text': null

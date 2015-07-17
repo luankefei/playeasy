@@ -63,10 +63,20 @@ define(function(require, exports, module) {
     // 初始化页面各部分
     init.loadPage = function() {
 
+        var loadMap = {
+
+            '#add-bar': '/view/detail-addbar.html',
+            '#start-bar': '/view/detail-startbar.html',
+            '#left-bar': '/view/detail-leftbar.html'
+        }
+
         // 启动计数器，全部加载完成后，执行事件绑定
         var timer = new LoadTimer()
 
-        timer.count = 4
+        timer.count = loadMap.length
+
+        console.log(loadMap)
+
         timer.callback = function() {
 
             init.bindToolEvent()
@@ -78,17 +88,18 @@ define(function(require, exports, module) {
             timer.step()
         }
 
+        for (var k  in loadMap) {
+
+            $(k).load(loadMap[k], loadCallback)
+        }
         // 加载左侧添加工具条
-        $('#add-bar').load('/view/detail-addbar.html', loadCallback)
+        // $('#add-bar').load('/view/detail-addbar.html', loadCallback)
 
         // 添加顶部公共工具条
-        $('#start-bar').load('/view/detail-startbar.html', loadCallback)
+        // $('#start-bar').load('/view/detail-startbar.html', loadCallback)
 
         // 加载左侧数据工具条
-        $('#left-bar').load('/view/detail-leftbar.html', loadCallback)
-
-        // 加载右侧工具条
-        $('#chart-bar').load('/view/detail-chartbar.html', loadCallback)
+        // $('#left-bar').load('/view/detail-leftbar.html', loadCallback)
     }
 
     // 初始化页面基础事件
