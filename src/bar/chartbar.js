@@ -13,6 +13,19 @@ define(function(require, exports) {
     var Controlbar = require('./controlbar')
     var chartBar = null
 
+
+    // 按照当前选中的chart对象，初始化属性
+    var initOptions = function(bar) {
+
+        console.log(bar)
+    }
+
+    // 刷新DOM
+    var refreshRender = function(render) {
+
+        console.log(render)
+    }
+
     // 工具条在初次添加控件的时候初始化，通过单例创建
     function ChartBar(render) {
     
@@ -52,6 +65,14 @@ define(function(require, exports) {
         // y轴标题
         this.yTitle = ''
 
+        // 激活事件
+        var initEvents = function(render) {
+
+            $(render).on('click', function() {
+
+                console.log('render clicked')
+            })
+        }   
 
         // 构造函数，负责初始化整个工具条对象
         ! function(base) {
@@ -60,11 +81,11 @@ define(function(require, exports) {
 
             // 初始化：加载右侧工具条
             $(base.render).load('/view/detail-chartbar.html')
+
+            // 最后激活事件，在构造函数内执行，保证事件只绑定一次
+            initEvents(base.render)
             
         } (this)
-
-
-
 
 
         // TODO: 可扩展大量图表组件属性，与图表组建支持达成一致
@@ -81,16 +102,11 @@ define(function(require, exports) {
             //this.target = chart
 
             // 初始化选项，下拉框
-            initOptions()
+            initOptions(this)
            
             // 然后调用刷新函数，变更DOM
-            refreshRender()
+            refreshRender(this.render)
             
-            // 最后激活事件
-            initEvents()
-            
-            // 考虑事件是否有回收必要
-            // 
             // 显示工具条
             this.render.style.display = 'block'
         }
@@ -116,4 +132,6 @@ define(function(require, exports) {
 })
 
 /**
+ * 2015.7.18
+ * 修改init函数，将事件绑定移动到chartbar的构造函数内执行
  */
