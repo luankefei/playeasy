@@ -8,6 +8,8 @@
  * @author  sunken
  * @date 2015.7.16
  */
+
+// TODO: 这个文件文件需要整体重构
 define(function(require, exports) {
 
     var Controlbar = require('./controlbar')
@@ -21,12 +23,25 @@ define(function(require, exports) {
     }
 
     // 刷新DOM
-    var refreshRender = function(render) {
+    var refreshRender = function() {
 
-        console.log(render)
+        // TODO: 初始化图表类型列表
+        var chartTypeList = $('#select-chart-type').find('ul')
+        var html = ''
+
+        for (var i = 0; i < this.chartTypeSupport.length; i++) {
+
+            html = html 
+                + '<li>' 
+                + this.chartTypeSupport[i] 
+                + '</li>'
+        }
+
+        chartTypeList.html(html)
     }
 
     // 工具条在初次添加控件的时候初始化，通过单例创建
+    // TODO: 部分属性应该抽离到配置文件中
     function ChartBar(render) {
     
         // 当前选中控件对象
@@ -38,8 +53,11 @@ define(function(require, exports) {
         // 当前选中的面板
         this.currentPanelIndex = 0
 
-        // 图表类型
+        // TODO: 图表类型，其实是选中了support中的第一项
         this.currentChartType = 'bar'
+
+        // 支持的图表类型
+        this.chartTypeSupport = ['bar', 'pie']
 
         // 坐标轴开关
         this.axis = true
@@ -89,23 +107,17 @@ define(function(require, exports) {
 
 
         // TODO: 可扩展大量图表组件属性，与图表组建支持达成一致
-        // 
-        // 
         // 根据选中对象，进行初始化
         this.init = function() {
 
             // 根据当前选中控件的属性，重置工具条属性
             var chart = $(this.target).data('chart')
-            
-            console.log(chart)
-
-            //this.target = chart
 
             // 初始化选项，下拉框
             initOptions(this)
            
             // 然后调用刷新函数，变更DOM
-            refreshRender(this.render)
+            refreshRender.call(this)
             
             // 显示工具条
             this.render.style.display = 'block'
@@ -130,6 +142,8 @@ define(function(require, exports) {
         return chartBar
     }
 })
+
+
 
 /**
  * 2015.7.18
