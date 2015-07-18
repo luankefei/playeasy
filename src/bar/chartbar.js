@@ -14,13 +14,13 @@ define(function(require, exports) {
     var chartBar = null
 
     // 工具条在初次添加控件的时候初始化，通过单例创建
-    function ChartBar() {
+    function ChartBar(render) {
     
         // 当前选中控件对象
         this.target = null
 
         // 生成工具条的容器
-        this.renderTo = null
+        this.render = null
 
         // 当前选中的面板
         this.currentPanelIndex = 0
@@ -54,13 +54,14 @@ define(function(require, exports) {
 
 
         // 构造函数，负责初始化整个工具条对象
-        ! function() {
+        ! function(base) {
+
+            base.render = render
 
             // 初始化：加载右侧工具条
-            $('#chart-bar').load('/view/detail-chartbar.html')
+            $(base.render).load('/view/detail-chartbar.html')
             
-
-        } ()
+        } (this)
 
 
 
@@ -72,35 +73,26 @@ define(function(require, exports) {
         // 根据选中对象，进行初始化
         this.init = function() {
 
-            console.log('初始化右侧工具条')
-
             // 根据当前选中控件的属性，重置工具条属性
             var chart = $(this.target).data('chart')
-
-
+            
             console.log(chart)
 
             //this.target = chart
 
-            // 初始化和重置走不同流程
-
-
             // 初始化选项，下拉框
-            
-            // 初始化事件
-            
-            // 重置选中状态
-
-            // 显示工具条
+            initOptions()
            
             // 然后调用刷新函数，变更DOM
-            // 
+            refreshRender()
+            
             // 最后激活事件
-            // 
-            // 
+            initEvents()
+            
             // 考虑事件是否有回收必要
             // 
             // 显示工具条
+            this.render.style.display = 'block'
         }
     }
 
@@ -110,7 +102,10 @@ define(function(require, exports) {
 
         if (chartBar === null) {
 
-            chartBar = new ChartBar()
+            var render = $('#chart-bar')
+
+            // 传递的是dom对象
+            chartBar = new ChartBar(render[0])
         }
 
         chartBar.target = target
