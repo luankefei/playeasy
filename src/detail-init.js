@@ -63,6 +63,7 @@ define(function(require, exports, module) {
     // 初始化页面各部分
     init.loadPage = function() {
 
+        // TODO:  顶部工具条虽然直接加载，但功能并没有激活
         // 加载左侧添加工具条
         // 添加顶部公共工具条
         // 加载左侧数据工具条

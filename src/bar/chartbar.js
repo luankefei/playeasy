@@ -15,7 +15,6 @@ define(function(require, exports) {
     var Controlbar = require('./controlbar')
     var chartBar = null
 
-
     // 按照当前选中的chart对象，初始化属性
     var initOptions = function(bar) {
 
@@ -26,7 +25,7 @@ define(function(require, exports) {
     var refreshRender = function() {
 
         // TODO: 初始化图表类型列表
-        var chartTypeList = $('#select-chart-type').find('ul')
+        var chartTypeList = $('#select-chart-type ul')
         var html = ''
 
         for (var i = 0; i < this.chartTypeSupport.length; i++) {
@@ -38,10 +37,13 @@ define(function(require, exports) {
         }
 
         chartTypeList.html(html)
+
+        console.log('图表类型列表初始化完成')
     }
 
     // 工具条在初次添加控件的时候初始化，通过单例创建
     // TODO: 部分属性应该抽离到配置文件中
+    // TODO: 属性需要重新规划，哪些需要属性，为什么需要
     function ChartBar(render) {
     
         // 当前选中控件对象
@@ -86,6 +88,8 @@ define(function(require, exports) {
         // 激活事件
         var initEvents = function(render) {
 
+            // 下拉列表的点击事件
+            // TODO: 找不到下拉列表的render对象，需要记录。其他控件也一样
             $(render).on('click', function() {
 
                 console.log('render clicked')
