@@ -1888,6 +1888,7 @@ Http.load = function(url, callback) {
  * 增加了convertJsonToPostData函数，该函数接收一个json参数，返回一个post数据格式字符串
  * 2015.7.14
  * 增加了load函数，用于加载页面片段
+ * 更新了load函数，增加了第二个参数callback
  */
  
 
@@ -3476,9 +3477,9 @@ mix($, {
     route: Route.provider,
     create: create,
     imgReady: imgReady,
-    // on: Event.on,
-    // live: Event.live,
-    
+    loadCss: Http.getCss,
+    loadJs: Http.getScript,
+
     module: Module.init,
     component: Module.component.init
 })
