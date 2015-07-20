@@ -32,32 +32,26 @@
   width: 153px;
   border: 1px solid #c9c9c6;
 }
-.select:hover {
-  cursor: pointer;
-}
-.select:hover .select-value {
-  float: left;
-  line-height: 28px;
-  padding-left: 5px;
-}
-.select:hover i {
+.select i {
   float: right;
-  background: url("../images/select.png") no-repeat;
+  background: url("/public/image/select.png") no-repeat;
   background-position: 0px 11px;
   height: 28px;
   width: 15px;
   margin-left: 4px;
 }
-.selct-value-width {
-  width: 127px;
+.select .select-value {
+  float: left;
+  line-height: 28px;
+  padding-left: 5px;
 }
-.select-wrapper {
+.select .select-wrapper {
   left: -1px;
   position: relative;
   float: left;
   width: 100%;
 }
-.select-list {
+.select .select-wrapper .select-list {
   width: 100%;
 /*width: 630px*/
   position: absolute;
@@ -72,14 +66,20 @@
   max-height: 300px;
   overflow-y: scroll;
 }
-.select-list ul li {
+.select .select-wrapper .select-list ul li {
   height: 30px;
   line-height: 30px;
   padding-left: 5px;
 }
-.select-list ul li:hover {
+.select .select-wrapper .select-list ul li:hover {
   background: #ff6f76;
   color: #fff;
+}
+.select:hover {
+  cursor: pointer;
+}
+.selct-value-width {
+  width: 127px;
 }
 .select-list-value {
   background: #f5f5f5;

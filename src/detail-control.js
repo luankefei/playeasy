@@ -24,16 +24,17 @@ define(function(require, exports, module) {
 
     // 重置控件的选中状态
     control.initSelected = function(target) {
-        
-        var selected = $('.control.selected')
 
-        if (selected.length > 0) {
-
-            selected.removeClass('selected')
-        }
-
-        // case 2: 当前控件未被选中，进入选中流程
+        // case 1: 当前控件未被选中，进入选中流程
         if (!$(target).hasClass('selected')) {
+
+            var selected = $('.control.selected')
+
+            // 先清除之前的选中状态
+            if (selected.length > 0) {
+
+                selected.removeClass('selected')
+            }
 
             $(target).addClass('selected')
 
@@ -49,8 +50,9 @@ define(function(require, exports, module) {
     control.create = function(type) {
 
         var obj = eval('new ' + type[0].toUpperCase() + type.substring(1) + '()')
+        var target = obj.init()
 
-        return obj.init()
+        return target
     }
    
     module.exports = control

@@ -43,6 +43,8 @@ define(function(require, exports, module) {
         // 当前元素未被选中，进入选中流程
         if (!state) {
 
+            console.log('未被选中，进入选中流程')
+
             // 重置主工具条
             toolbar.init(target)
 
@@ -111,7 +113,7 @@ define(function(require, exports, module) {
             // chart = chart.init()
 
             // 传入dom对象，选中当前控件
-            init.selectControl(chart)
+            // init.selectControl(chart)
         })
 
         // 添加文本

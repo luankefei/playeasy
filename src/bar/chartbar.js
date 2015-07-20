@@ -16,16 +16,28 @@ define(function(require, exports) {
     var chartBar = null
 
     // 按照当前选中的chart对象，初始化属性
-    var initOptions = function(chart) {
+    // 传入的参数bar是工具条对象
+    var initOptions = function(bar) {
 
-        console.log(chart)
+        // TODO: 支持的类型应该提取到配置文件
+        // 初始化下拉列表
+        // line, spline, area, areaspline, column, bar, pie , scatter
+        bar.chartTypeSupport = [
+            'line', 
+            'spline', 
+            'area', 
+            'areaspline', 
+            'column', 
+            'bar', 
+            'pie', 
+            'scatter'
+        ]
     }
 
     // 刷新DOM
     var refreshRender = function() {
 
         // TODO: 初始化图表类型列表
-        var chartTypeList = $('#select-chart-type ul')
         var html = ''
 
         for (var i = 0; i < this.chartTypeSupport.length; i++) {
@@ -36,7 +48,35 @@ define(function(require, exports) {
                 + '</li>'
         }
 
-        chartTypeList.html(html)
+        // TODO: 调用刷新时，工具条还没初始化好，无法获取下拉列表            
+        var waitCount = 10
+
+        // 尝试10次，每次200毫秒
+        var wait = setInterval(function() {
+
+            var chartTypeList = $('#select-chart-type ul')
+
+            if (chartTypeList.length > 0) {
+
+                console.log('init chartbar ok.')
+
+                chartTypeList.html(html)
+
+                clearInterval(wait)
+            }
+
+            if (waitCount === 10) {
+
+                console.log('init chartbar timeout.')
+
+                clearInterval(wait)
+
+            } else {
+
+                ++waitCount
+            }
+
+        }, 200)
     }
 
     // 工具条在初次添加控件的时候初始化，通过单例创建
@@ -100,10 +140,11 @@ define(function(require, exports) {
             base.render = render
 
             // 初始化：加载右侧工具条
-            $(base.render).load('/view/detail-chartbar.html')
+            $(base.render).load('/view/detail-chartbar.html', function() {
 
-            // 最后激活事件，在构造函数内执行，保证事件只绑定一次
-            initEvents(base.render)
+                // 最后激活事件，在构造函数内执行，保证事件只绑定一次
+                initEvents(base.render)
+            })
             
         } (this)
 

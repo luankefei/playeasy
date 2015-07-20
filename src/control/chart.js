@@ -77,7 +77,6 @@ define(function(require, exports, module) {
 
             var target = $.create('div')
                 .addClass('control')
-                .addClass('selected')
                 .attr('data-type', 'chart')
                 .css('position', 'absolute')
                 .css('top', 0)

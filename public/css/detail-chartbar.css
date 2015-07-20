@@ -22,7 +22,7 @@
 }
 .controlbar .tabbar ul li {
   float: left;
-  width: 82px;
+  width: 123px;
   height: 34px;
   line-height: 34px;
   text-align: center;
@@ -67,7 +67,7 @@
   width: 60px;
   margin-left: 10px;
 }
-.controlbar .settings dd * {
+.controlbar .settings dd > * {
   float: right;
 }
 .controlbar .settings .checkbox {
@@ -102,79 +102,6 @@
   width: 100%;
   margin-top: 10px;
 }
-/*
-#font-bar .settings.compose > button 
-    float: left
-    width: 35px
-    height: 26px
-    outline: 1px solid #c9c9c6
-    background: rgb(248, 247, 249)
-
-#font-bar .settings.compose > button:nth-child(2) 
-    margin-right: 13px
-
-
-#font-bar #font-bold 
-    background-image: url(/resource/images/controlbar/font_bold.png)
-    background-position: center
-    background-repeat: no-repeat
-
-#font-bar #font-italic 
-    background-image: url(/resource/images/controlbar/font_italic.png)
-    background-position: center
-    background-repeat: no-repeat
-
-#font-bar #font-align-left 
-    background-image: url(/resource/images/controlbar/align_left.png)
-    background-position: center
-    background-repeat: no-repeat
-    background-color:#319B8D
-
-#font-bar #font-align-right 
-    background-image: url(/resource/images/controlbar/align_right.png)
-    background-position: center
-    background-repeat: no-repeat
-
-#font-bar #font-align-center 
-    background-image: url(/resource/images/controlbar/align_center.png)
-    background-position: center
-    background-repeat: no-repeat
-
-#font-bar #font-align-justify 
-    background-image: url(/resource/images/controlbar/align_justify.png)
-    background-position: center
-    background-repeat: no-repeat
-
-
-
-#chart-bar .settings.interaction .tip 
-    margin-bottom: 20px
-    display: block
-
-
-#chart-bar .settings.interaction .start-panel button 
-    width: 100px
-
-
-
-#chart-bar .settings.interaction button:nth-child(3) 
-    float: right
-
-
-#chart-bar .follow-panel, #chart-bar .main-panel 
-    display: none
-
-
-#chart-bar .toggle 
-    display: none
-
-
-#chart-bar .start-panel 
-    display: block
-
-/*#chart-bar .toggle 
-    margin-bottom: 
-*/
 #global-bar .settings > dl:nth-child(3) {
   padding: 0;
 }

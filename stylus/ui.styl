@@ -11,7 +11,6 @@
     z-index: 1000
     padding-right: 20px
 
-
 #you_cant_see_me_div 
     background: #000
     height: 100%
@@ -35,61 +34,59 @@
     line-height: 22px
     width: 153px
     border: 1px solid #c9c9c6
-
-.select:hover 
-    cursor: pointer
-
-    .select-value 
-        float: left
-        line-height: 28px
-        padding-left: 5px
-
-
-    i 
+    
+    i
         float: right
-        background: url(../images/select.png) no-repeat
+        background: url(/public/image/select.png) no-repeat
         background-position: 0px 11px
         height: 28px
         width: 15px
         margin-left: 4px
 
+    .select-value 
+        float: left
+        line-height: 28px
+        padding-left: 5px
+        
+    .select-wrapper 
+        left: -1px
+        position: relative
+        float: left
+        width: 100%
+        
+
+        .select-list 
+            width: 100%
+            /*width: 630px*/
+            position: absolute
+            top: 0
+            left: 0
+            /*background: #f6f5ef*/
+            background: #fff
+            display: none
+            padding: 10px 0
+            border: 1px solid #bfbfbf
+            z-index: 3
+            max-height: 300px
+            overflow-y: scroll
+
+            ul 
+                li 
+                    height: 30px
+                    line-height: 30px
+                    padding-left: 5px
+
+                li:hover 
+                    background: sunkenLightRed
+                    color: #fff
+
+
+.select:hover 
+    cursor: pointer
 
 .selct-value-width
     width: 127px
 
-
-
-
-.select-wrapper 
-    left: -1px
-    position: relative
-    float: left
-    width: 100%
-
-.select-list 
-    width: 100%
-    /*width: 630px*/
-    position: absolute
-    top: 0
-    left: 0
-    /*background: #f6f5ef*/
-    background: #fff
-    display: none
-    padding: 10px 0
-    border: 1px solid #bfbfbf
-    z-index: 3
-    max-height: 300px
-    overflow-y: scroll
-
-    ul 
-        li 
-            height: 30px
-            line-height: 30px
-            padding-left: 5px
-
-        li:hover 
-            background: sunkenLightRed
-            color: #fff
 
 .select-list-value 
     background: #f5f5f5
