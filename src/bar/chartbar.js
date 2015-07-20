@@ -16,9 +16,9 @@ define(function(require, exports) {
     var chartBar = null
 
     // 按照当前选中的chart对象，初始化属性
-    var initOptions = function(bar) {
+    var initOptions = function(chart) {
 
-        console.log(bar)
+        console.log(chart)
     }
 
     // 刷新DOM
@@ -37,8 +37,6 @@ define(function(require, exports) {
         }
 
         chartTypeList.html(html)
-
-        console.log('图表类型列表初始化完成')
     }
 
     // 工具条在初次添加控件的时候初始化，通过单例创建
@@ -114,6 +112,8 @@ define(function(require, exports) {
         // 根据选中对象，进行初始化
         this.init = function() {
 
+            console.log('init')
+
             // 根据当前选中控件的属性，重置工具条属性
             var chart = $(this.target).data('chart')
 
@@ -140,9 +140,6 @@ define(function(require, exports) {
             chartBar = new ChartBar(render[0])
         }
 
-        chartBar.target = target
-        chartBar.init()
-
         return chartBar
     }
 })
@@ -152,4 +149,6 @@ define(function(require, exports) {
 /**
  * 2015.7.18
  * 修改init函数，将事件绑定移动到chartbar的构造函数内执行
+ * 2015.7.20
+ * 修改了对外暴露的init函数，现在只负责返回chartbar对象 
  */

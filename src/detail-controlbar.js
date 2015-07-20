@@ -22,7 +22,11 @@ define(function(require, exports, module) {
         var map = {
 
             'chart': (function() {
+
+                console.log('controlbar.init')
+
                 return chartbar.init(target)
+
             })(),
 
             'text': null
@@ -38,4 +42,6 @@ define(function(require, exports, module) {
 })
 
 /**
+ * 2015.7.20
+ * 
  */

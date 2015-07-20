@@ -46,8 +46,7 @@ define(function(require, exports, module) {
             // 重置主工具条
             toolbar.init(target)
 
-            // 重置控件工具条
-            // TODO: 根据不同类型的控件，重置不同的工具条
+            // 根据控件类型，重置控件工具条
             controlbar.init(target)
         }
     }
