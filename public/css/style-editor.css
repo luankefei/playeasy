@@ -1,0 +1,17 @@
+#style-editor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 600px;
+  height: 420px;
+  background: #ff6f76;
+  border: 1px solid #b5b5b5;
+}
+#style-editor textarea {
+  width: 540px;
+  height: 360px;
+  padding: 30px;
+}
