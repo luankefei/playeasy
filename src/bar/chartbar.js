@@ -12,12 +12,15 @@
 // TODO: 这个文件文件需要整体重构
 define(function(require, exports) {
 
-    var Controlbar = require('./controlbar')
+    var Controlbar = require('./controlbar'),
+        styleEditor = require('../component/style-editor')
+
     var chartBar = null
+
 
     // 按照当前选中的chart对象，初始化属性
     // 传入的参数bar是工具条对象
-    var initOptions = function(bar) {
+    var initOptions = function(bar, chart) {
 
         // TODO: 支持的类型应该提取到配置文件
         // 初始化下拉列表
@@ -65,7 +68,7 @@ define(function(require, exports) {
                 clearInterval(wait)
             }
 
-            if (waitCount === 10) {
+            if (waitCount === 0) {
 
                 console.log('init chartbar timeout.')
 
@@ -73,7 +76,7 @@ define(function(require, exports) {
 
             } else {
 
-                ++waitCount
+                --waitCount
             }
 
         }, 200)
@@ -97,7 +100,7 @@ define(function(require, exports) {
         this.currentChartType = 'bar'
 
         // 支持的图表类型
-        this.chartTypeSupport = ['bar', 'pie']
+        this.chartTypeSupport = []
 
         // 坐标轴开关
         this.axis = true
@@ -126,12 +129,18 @@ define(function(require, exports) {
         // 激活事件
         var initEvents = function(render) {
 
-            // 下拉列表的点击事件
-            // TODO: 找不到下拉列表的render对象，需要记录。其他控件也一样
-            // $(render).on('click', function() {
+            console.log('init evnets')
 
-                
-            // })
+            $('#chart-style').on('click', function() {
+
+                // 初始化样式编辑控件
+                // 尝试写一个控件生成的完成流程
+                // id, renderTo, styleUrl
+                // TODO: 这些属性仍然应该在配置文件中
+                styleEditor.init('style-editor', null, '/public/css/style-editor.css')
+
+                console.log('点击编辑样式')
+            })
         }   
 
         // 构造函数，负责初始化整个工具条对象
@@ -156,8 +165,8 @@ define(function(require, exports) {
             // 根据当前选中控件的属性，重置工具条属性
             var chart = $(this.target).data('chart')
 
-            // 初始化选项，下拉框
-            initOptions(this)
+            // 根据选中的图表，初始化选项，下拉框
+            initOptions(this, chart)
            
             // 然后调用刷新函数，变更DOM
             refreshRender.call(this)
@@ -190,4 +199,7 @@ define(function(require, exports) {
  * 修改init函数，将事件绑定移动到chartbar的构造函数内执行
  * 2015.7.20
  * 修改了对外暴露的init函数，现在只负责返回chartbar对象 
+ * 修改了initOptions，添加了测试代码
+ * 修改了refreshRender，用setInterval做等待，考虑到代码量和不优雅的实现，后面会重构
+ * 修改了initEvents，增加编辑样式按钮的点击事件
  */
