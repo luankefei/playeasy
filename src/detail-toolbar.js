@@ -10,6 +10,7 @@
 define(function(require, exports) {
 
     // 工具条在初次选中控件的时候初始化，通过单例创建
+    // 再次选中只走重置流程
     var Toolbar = function() {
         
 
@@ -21,7 +22,7 @@ define(function(require, exports) {
 
     exports.init = function(target) {
 
-        console.log('toolbar init')
+        console.log('TODO: toolbar init')
 
     }
 

@@ -32,7 +32,7 @@ define(function(require, exports) {
 
             html = html 
                 + '<li>' 
-                + this.chartTypeSupport[i] 
+                + this.chartTypeSupport[i]
                 + '</li>'
         }
 
@@ -88,10 +88,10 @@ define(function(require, exports) {
 
             // 下拉列表的点击事件
             // TODO: 找不到下拉列表的render对象，需要记录。其他控件也一样
-            $(render).on('click', function() {
+            // $(render).on('click', function() {
 
-                console.log('render clicked')
-            })
+                
+            // })
         }   
 
         // 构造函数，负责初始化整个工具条对象
@@ -111,8 +111,6 @@ define(function(require, exports) {
         // TODO: 可扩展大量图表组件属性，与图表组建支持达成一致
         // 根据选中对象，进行初始化
         this.init = function() {
-
-            console.log('init')
 
             // 根据当前选中控件的属性，重置工具条属性
             var chart = $(this.target).data('chart')
