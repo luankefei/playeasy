@@ -20,56 +20,26 @@ define(function(require, exports, module) {
         // highcharts对象
         this.chart = null
         // 绘图数据
-        this.data = {
-            chart: {
-                renderTo: null,
-                type: this.type
-            },
-
-            xAxis: {
-
-                label: {
-
-                    enabled: true
-                },
-
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-            },
-
-            // yAxis: '',
-
-            yAxis: {
-                title: ''
-            },
-
-            series: [{
-                data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-            }],
-
-            colors: ['#ed4441', '#eda7bb', '#ff6f76'],
-
-            title: '',
-
-            credits: {
-                enabled: false
-            },
-
-            legend: {
-                enabled: false
-            }
-        }
+        this.data = null
 
         this.draw = function() {
 
-            // 绘制前设置renderTo属性，否则会初始化为默认值null
-            this.data.chart.renderTo = this.target
+            var base = this
 
-            this.chart = new Highcharts.Chart(this.data)
+            // 先加载默认数据
+            // TODO: 路径应该有配置文件
+            $.get('/public/data/chart.json', function(data) {
 
-            // 将图表对象与dom对象关连
-            // $(this.target).data('data', this.data) 
-            $(this.target).data('chart', this.chart)
+                base.data = data
+
+                // 绘制前设置renderTo属性，否则会初始化为默认值null
+                base.data.chart.renderTo = base.target
+                base.chart = new Highcharts.Chart(base.data)
+
+                // 将图表对象与dom对象关连
+                $(base.target).data('chart', base.chart)
+                $(base.target).data('data', base.data)
+            })
         }
 
         // TODO: 多控件公用的代码        

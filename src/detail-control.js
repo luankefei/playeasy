@@ -39,7 +39,6 @@ define(function(require, exports, module) {
             $(target).addClass('selected')
 
             return false
-
         }
 
         // case 2: 当前控件已被选中
