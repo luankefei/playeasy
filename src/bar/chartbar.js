@@ -129,15 +129,16 @@ define(function(require, exports) {
         // 激活事件
         var initEvents = function(render) {
 
-            console.log('init evnets')
+            console.log('init events')
 
             $('#chart-style').on('click', function() {
-
                 // 初始化样式编辑控件
                 // 尝试写一个控件生成的完成流程
                 // id, renderTo, styleUrl
                 // TODO: 这些属性仍然应该在配置文件中
                 styleEditor.init('style-editor', null, '/public/css/style-editor.css')
+
+                // 首次点击激活codeMirror
 
                 console.log('点击编辑样式')
             })

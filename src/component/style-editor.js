@@ -24,13 +24,114 @@ define(function(require, exports, module) {
             $.create('textarea').appendTo(editor)
         }
 
+        var loadCss = function(url) {
+
+            // 如果有styleUrl，加载
+            if (url) {
+
+                $.loadCss(url)
+            }            
+        }
+
+        var getData = function() {
+
+            var data = $('.control.selected').data('data')
+
+            // TODO: renderTo属性指向的是dom对象，所以改为null
+            data.chart.renderTo = null
+            data = JSON.stringify(data, null, 4)
+
+            return data
+        }
+
+        // TODO: 需要重构
+        var initTemplate = function(data) {
+
+            var node = null
+            var html = '<div class="frame-head">'
+                    + '<span>图表样式编辑</span>'
+                    + '<a href="javascript:;">X</a>'
+                    + '</div>'
+                    + '<textarea id="plugin-code-mirror"></textarea>'
+
+            // 如果renderTo没有指定，就创建dom对象
+            if (this.renderTo === null) {
+
+                // TODO: container应该抽离成属性
+                var container = $('#fs-view')
+
+                node = $.create('div').appendTo(container)
+                node.attr('id', this.id)
+            
+            } else {
+
+                node = $('#' + this.renderTo)
+            }
+
+            node.html(html)
+
+            var textarea = node.find('textarea')
+
+            textarea.html(data)
+
+            // 将dom对象记录到target属性
+            this.target = node[0]
+
+            return {
+                node: node[0],
+                textarea: textarea[0]
+            }
+        }
+
+        // TODO: 配置文件
+        var initCodeMirror = function(textarea) {
+
+            $.loadCss('/public/lib/codemirror.css')
+            
+            seajs.use(['/public/lib/codemirror.js',
+                '/public/lib/mode/javascript/javascript.js'], function() {
+
+                var editor = CodeMirror.fromTextArea(textarea, {
+                    mode: 'application/json',
+                    styleActiveLine: true,
+                    lineNumbers: true,
+                    lineWrapping: true
+                })
+
+                // editor.setSize('100%', '360px')
+            })
+        }
+
+        function bindEvent(node) {
+
+            var target = $(node).find('.frame-head')
+            var control = target.parent()
+
+            // 激活拖拽事件
+            target.drag(function(e, mouseStart, controlStart) {
+                
+                console.log(mouseStart)
+                console.log(controlStart)
+
+                var left = e.pageX - (mouseStart.x - controlStart.x),
+                    top = e.pageY - (mouseStart.y - controlStart.y)
+
+                // console.log('left: ' + left)
+                // console.log('top: ' + top)
+
+                control
+                    .css('margin', 0)
+                    .css('left', left + 'px')
+                    .css('top', top + 'px')
+
+            }, control[0])
+        }
+
         ! function(base) {
 
             base.id = id
             base.renderTo = renderTo
             base.styleUrl = styleUrl
-
-            var node = null
 
             // case 1: 检查必要属性，如果缺少则退出
             if (!base.id) {
@@ -38,37 +139,20 @@ define(function(require, exports, module) {
                 return new Error('创建失败，缺少必要属性')
             }
 
-            // 如果有styleUrl，加载
-            if (base.styleUrl) {
-
-                $.loadCss(base.styleUrl)
-            }
-
-            // 如果renderTo没有指定，就创建dom对象
-            if (base.renderTo === null) {
-
-                // TODO: container应该抽离成属性
-                var container = $('#fs-view')
-
-                node = $.create('div').appendTo(container)
-                node.attr('id', base.id)
+            // step 1: 加载css
+            loadCss(base.styleUrl)
             
-            } else {
+            // step 2: 获取数据
+            var data = getData()
 
-                node = $('#' + base.renderTo)
-            }
+            // step 3: 初始化dom结构
+            var template = initTemplate.call(base, data)
 
-            var data = $('.control.selected').data('data')
+            // step 4: 初始化codeMirror
+            initCodeMirror(template.textarea)
 
-            // TODO: renderTo属性指向的是dom对象，所以改为null
-            data.chart.renderTo = null
-            data = JSON.stringify(data, null, 8)
-
-            node.html('<textarea></textarea>')
-            node.find('textarea').html(data)
-
-            // 将dom对象记录到target属性
-            base.target = node[0]
+            // step 5: 激活窗口事件
+            bindEvent(template.node)
 
         } (this)
 
@@ -95,4 +179,6 @@ define(function(require, exports, module) {
  * 增加了create函数，用于构建组件
  * 构造Editor时，增加了三个参数：id、renderTo、styleUrl
  * 将create函数变更为自运行函数
+ * 2015.7.21
+ * 重构了构造函数中的流程，拆分成私有函数
  */

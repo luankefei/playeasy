@@ -1,14 +1,30 @@
 #style-editor {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
+  top: 50%;
+  left: 50%;
+  margin-left: -300px;
+  margin-top: -210px;
   width: 600px;
   height: 420px;
-  background: #ff6f76;
-  border: 1px solid #b5b5b5;
+  background: #fff;
+  border: 1px solid #dcdee0;
+}
+#style-editor .frame-head {
+  height: 34px;
+  line-height: 34px;
+  background: #f5f5f5;
+  text-align: center;
+}
+#style-editor .frame-head span {
+  font-size: 14px;
+}
+#style-editor .frame-head a {
+  float: right;
+  margin-right: 10px;
+}
+#style-editor .frame-head:hover {
+  cursor: pointer;
+  background: #f9f9f9;
 }
 #style-editor textarea {
   width: 540px;
