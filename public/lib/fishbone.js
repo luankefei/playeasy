@@ -2428,20 +2428,34 @@ Event.off = function(type, handler) {
 }
 
 // TODO: 新增的特殊事件接口，可能会改动
-Event.drag = function(dragStart, dragging, dragEnd) {
+Event.drag = function(dragging, target, dragStart, dragEnd) {
+
+    var frame = target
 
     this.on('mousedown', function(e) {
 
-        dragStart && dragStart(e)
+        var self = this
+        var mouseStart = { 
+            x: e.pageX, 
+            y: e.pageY 
+        },
+        target = frame !== undefined ? frame : self,
+        targetPosition = $(target).position(),
+        targetStart = {
+            x: targetPosition.left,
+            y: targetPosition.top
+        }
+
+        dragStart && dragStart.call(self, e)
 
         $(document).on('mousemove', function(e) {
 
-            dragging && dragging(e)
+            dragging && dragging.call(self, e, mouseStart, targetStart)
         })
 
         $(document).on('mouseup', function(e) {
 
-            dragEnd && dragEnd(e)
+            dragEnd && dragEnd.call(self, e)
 
             $(document).off('mousemove')
             $(document).off('mouseup')
@@ -2471,6 +2485,10 @@ Event.drag = function(dragStart, dragging, dragEnd) {
  * 修改了removeEvent，修复bug：删除事件后没有重置i
  * 2015.7.13
  * 增加了drag接口，传入三个参数，对应拖拽的三种状态
+ * 2015.7.21
+ * 修改了drag，更改的参数顺序，将dragging移到最前
+ * 修改了drag，提供两个默认变量，可以在dragging中作为参数使用
+ * 修改了drag，提供了第四个参数
  */
 
 /**
