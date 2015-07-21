@@ -17,7 +17,6 @@ define(function(require, exports) {
 
     var chartBar = null
 
-
     // 按照当前选中的chart对象，初始化属性
     // 传入的参数bar是工具条对象
     var initOptions = function(bar, chart) {
@@ -132,13 +131,15 @@ define(function(require, exports) {
 
                 if (e.target.nodeName === 'LI') {
 
+                    var target = $('.control.selected')
+
                     // 获取当前选中的图表对象
-                    var chart = $('.control.selected').data('chart')
+                    var chart = target.data('chart'),
+                        data = target.data('data')
 
-                    chart.series[0].update({
-
-                        type: e.target.innerHTML                        
-                    })
+                    var type = e.target.innerHTML
+                    
+                    data.chart.type = type
                 }                
             })
 
@@ -211,7 +212,6 @@ define(function(require, exports) {
     }
 })
 
-
 /**
  * 2015.7.18
  * 修改init函数，将事件绑定移动到chartbar的构造函数内执行
@@ -222,4 +222,5 @@ define(function(require, exports) {
  * 修改了initEvents，增加编辑样式按钮的点击事件
  * 2015.7.21
  * 修改了chart-style的点击事件，窗口打开状态下点击该按钮，会执行关闭动作
+ * 增加select-chart-type点击事件，用户切换图表类型，并将类型记录到当前选中图表的data
  */

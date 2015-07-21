@@ -35,7 +35,9 @@ define(function(require, exports, module) {
 
         var getData = function() {
 
-            var data = $('.control.selected').data('data')
+            // 需要根据series 0的属性，过滤出允许修改的值
+            var chart = $('.control.selected').data('chart').series[0],
+                data = $('.control.selected').data('data')
 
             // TODO: renderTo属性指向的是dom对象，所以改为null
             data.chart.renderTo = null
@@ -96,6 +98,28 @@ define(function(require, exports, module) {
                         styleActiveLine: true,
                         lineNumbers: true,
                         lineWrapping: true
+                    })
+
+                    editor.on('change', function(editor, changes) {
+
+                        var value = editor.getValue(),
+                            target = $('.control.selected')
+
+                        try {
+
+                            value = JSON.parse(editor.getValue())
+
+                            value.chart.renderTo = target[0]
+
+                            // 重绘
+                            var chart = new Highcharts.Chart(value)
+
+                            target.data('data', value)
+                                .data('chart', chart)
+
+                        } catch(e) {
+
+                        }
                     })
                 })
             })
@@ -181,4 +205,5 @@ define(function(require, exports, module) {
  * 2015.7.21
  * 重构了构造函数中的流程，拆分成私有函数
  * 添加了事件支持
+ * 在initCodeMirror中增加了change事件
  */
