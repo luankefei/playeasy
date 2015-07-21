@@ -61,8 +61,6 @@ define(function(require, exports) {
 
             if (chartTypeList.length > 0) {
 
-                console.log('init chartbar ok.')
-
                 chartTypeList.html(html)
 
                 clearInterval(wait)
@@ -129,6 +127,22 @@ define(function(require, exports) {
         // 激活事件
         var initEvents = function(render) {
 
+            // 切换图表类型，委托
+            $('#select-chart-type').on('click', function(e) {
+
+                if (e.target.nodeName === 'LI') {
+
+                    // 获取当前选中的图表对象
+                    var chart = $('.control.selected').data('chart')
+
+                    chart.series[0].update({
+
+                        type: e.target.innerHTML                        
+                    })
+                }                
+            })
+
+            // 编辑图表样式
             $('#chart-style').on('click', function() {
 
                 var renderId = 'style-editor',

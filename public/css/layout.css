@@ -5,7 +5,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 10;
+  z-index: 1000;
   box-shadow: 0 0 4px #bcbcbc;
 }
 header .container {
@@ -98,7 +98,6 @@ footer {
 #account-menu-list {
   background: #fff;
   display: none;
-  z-index: 1003;
 }
 #account-menu-list ul li {
   line-height: 30px;
