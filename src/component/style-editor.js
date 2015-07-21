@@ -84,47 +84,46 @@ define(function(require, exports, module) {
         }
 
         // TODO: 配置文件
-        var initCodeMirror = function(textarea) {
+        function initCodeMirror(textarea) {
 
             $.loadCss('/public/lib/codemirror.css')
             
-            seajs.use(['/public/lib/codemirror.js',
-                '/public/lib/mode/javascript/javascript.js'], function() {
+            seajs.use('/public/lib/codemirror.js', function() {
+                seajs.use('/public/lib/mode/javascript/javascript.js', function() {
 
-                var editor = CodeMirror.fromTextArea(textarea, {
-                    mode: 'application/json',
-                    styleActiveLine: true,
-                    lineNumbers: true,
-                    lineWrapping: true
+                    var editor = CodeMirror.fromTextArea(textarea, {
+                        mode: 'application/json',
+                        styleActiveLine: true,
+                        lineNumbers: true,
+                        lineWrapping: true
+                    })
                 })
-
-                // editor.setSize('100%', '360px')
             })
         }
 
         function bindEvent(node) {
 
             var target = $(node).find('.frame-head')
-            var control = target.parent()
+            var frame = target.parent()
 
             // 激活拖拽事件
             target.drag(function(e, mouseStart, controlStart) {
-                
-                console.log(mouseStart)
-                console.log(controlStart)
 
                 var left = e.pageX - (mouseStart.x - controlStart.x),
                     top = e.pageY - (mouseStart.y - controlStart.y)
 
-                // console.log('left: ' + left)
-                // console.log('top: ' + top)
-
-                control
+                frame
                     .css('margin', 0)
                     .css('left', left + 'px')
                     .css('top', top + 'px')
 
-            }, control[0])
+            }, frame[0])
+
+            // 激活关闭按钮
+            target.find('a').on('click', function() {
+
+                frame.hide()
+            })
         }
 
         ! function(base) {
@@ -181,4 +180,5 @@ define(function(require, exports, module) {
  * 将create函数变更为自运行函数
  * 2015.7.21
  * 重构了构造函数中的流程，拆分成私有函数
+ * 添加了事件支持
  */

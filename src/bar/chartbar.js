@@ -129,18 +129,22 @@ define(function(require, exports) {
         // 激活事件
         var initEvents = function(render) {
 
-            console.log('init events')
-
             $('#chart-style').on('click', function() {
-                // 初始化样式编辑控件
-                // 尝试写一个控件生成的完成流程
-                // id, renderTo, styleUrl
-                // TODO: 这些属性仍然应该在配置文件中
-                styleEditor.init('style-editor', null, '/public/css/style-editor.css')
 
-                // 首次点击激活codeMirror
+                var renderId = 'style-editor',
+                    render = $('#' + renderId)
 
-                console.log('点击编辑样式')
+                if (render.length === 0 || render.css('display') === 'none') {
+
+                    render.show()
+
+                    // 初始化编辑控件
+                    styleEditor.init(renderId, null, '/public/css/style-editor.css')
+
+                } else {
+
+                    render.hide()
+                }
             })
         }   
 
@@ -203,4 +207,6 @@ define(function(require, exports) {
  * 修改了initOptions，添加了测试代码
  * 修改了refreshRender，用setInterval做等待，考虑到代码量和不优雅的实现，后面会重构
  * 修改了initEvents，增加编辑样式按钮的点击事件
+ * 2015.7.21
+ * 修改了chart-style的点击事件，窗口打开状态下点击该按钮，会执行关闭动作
  */
