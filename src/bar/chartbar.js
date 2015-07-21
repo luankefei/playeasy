@@ -198,7 +198,6 @@ define(function(require, exports) {
 })
 
 
-
 /**
  * 2015.7.18
  * 修改init函数，将事件绑定移动到chartbar的构造函数内执行

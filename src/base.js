@@ -86,12 +86,12 @@ var PE = (function() {
 // 导航事件
 $(document).ready(function() {
 
-    $('#account').live('mouseover', function() {
+    $('#account').on('mouseover', function() {
 
         $('#account-menu-list').show()
     })
 
-    $('#account').live('mouseout', function() {
+    $('#account').on('mouseout', function() {
 
         $('#account-menu-list').hide()
     })
