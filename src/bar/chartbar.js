@@ -21,19 +21,8 @@ define(function(require, exports) {
     // 传入的参数bar是工具条对象
     var initOptions = function(bar, chart) {
 
-        // TODO: 支持的类型应该提取到配置文件
         // 初始化下拉列表
-        // line, spline, area, areaspline, column, bar, pie , scatter
-        bar.chartTypeSupport = [
-            'line', 
-            'spline', 
-            'area', 
-            'areaspline', 
-            'column', 
-            'bar', 
-            'pie', 
-            'scatter'
-        ]
+        bar.chartTypeSupports = SETTING.chart.supportsType
     }
 
     // 刷新DOM
@@ -42,11 +31,11 @@ define(function(require, exports) {
         // TODO: 初始化图表类型列表
         var html = ''
 
-        for (var i = 0; i < this.chartTypeSupport.length; i++) {
+        for (var i = 0; i < this.chartTypeSupports.length; i++) {
 
             html = html 
                 + '<li>' 
-                + this.chartTypeSupport[i]
+                + this.chartTypeSupports[i]
                 + '</li>'
         }
 
@@ -80,8 +69,6 @@ define(function(require, exports) {
     }
 
     // 工具条在初次添加控件的时候初始化，通过单例创建
-    // TODO: 部分属性应该抽离到配置文件中
-    // TODO: 属性需要重新规划，哪些需要属性，为什么需要
     function ChartBar(render) {
     
         // 当前选中控件对象
@@ -93,35 +80,11 @@ define(function(require, exports) {
         // 当前选中的面板
         this.currentPanelIndex = 0
 
-        // TODO: 图表类型，其实是选中了support中的第一项
-        this.currentChartType = 'bar'
-
         // 支持的图表类型
-        this.chartTypeSupport = []
-
-        // 坐标轴开关
-        this.axis = true
-
-        // 信息开关
-        this.message = false
-
-        // 图例
-        this.legend = false
-
-        // 时间轴
-        this.timeAxis = false
+        this.chartTypeSupports = []
 
         // 数据
         this.data = []
-
-        // 标题
-        this.title = ''
-        
-        // x轴标题
-        this.xTitle = ''
-
-        // y轴标题
-        this.yTitle = ''
 
         // 激活事件
         var initEvents = function(render) {
@@ -180,8 +143,6 @@ define(function(require, exports) {
             
         } (this)
 
-
-        // TODO: 可扩展大量图表组件属性，与图表组建支持达成一致
         // 根据选中对象，进行初始化
         this.init = function() {
 
@@ -191,7 +152,7 @@ define(function(require, exports) {
             // 根据选中的图表，初始化选项，下拉框
             initOptions(this, chart)
            
-            // 然后调用刷新函数，变更DOM
+            // 调用刷新函数，变更DOM
             refreshRender.call(this)
             
             // 显示工具条
@@ -226,4 +187,7 @@ define(function(require, exports) {
  * 2015.7.21
  * 修改了chart-style的点击事件，窗口打开状态下点击该按钮，会执行关闭动作
  * 增加select-chart-type点击事件，用户切换图表类型，并将类型记录到当前选中图表的data
+ * 2015.7.22
+ * 重构了initOptions，类型从全局配置SETTING中获取
+ * 重构了ChartBar，删除了未被使用的属性
  */
