@@ -89,6 +89,38 @@ define(function(require, exports) {
         // 激活事件
         var bindEvents = function(render) {
 
+            // TODO: 需要重构
+            // 选择数据表
+            $('#select-data').on('click', function() {
+
+                // 每次点击选择数据表，重置下拉列表中的选项
+                // 每次选中图表，都要重置下拉列表当前选中项
+                var nodes = $('#left-bar').find('section.data')
+                    .find('dt')
+                
+                var tables = []
+
+                for (var i = 0; i < nodes.length; i++) {
+
+                    tables.push(nodes[i].innerHTML)
+                }
+
+                var ul = $(this).find('.select-list > ul')
+
+                // 清空下拉列表原有内容
+                ul.html('')
+
+                // 向下拉列表中追加内容
+                tables.forEach(function(v, i, a) {
+
+                    var li = $.create('li')
+
+                    li.html(v)
+
+                    ul.append(li)
+                })
+            })
+
             // 切换图表工具条面板
             $(render).find('.tabbar li').on('click', function() {
 
@@ -207,4 +239,5 @@ define(function(require, exports) {
  * 重构了initOptions，类型从全局配置SETTING中获取
  * 重构了ChartBar，删除了未被使用的属性
  * 修改了bindEvents，增加面板切换事件
+ * 增加了select-data点击事件，用于选择数据表
  */
