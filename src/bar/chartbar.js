@@ -129,11 +129,7 @@ define(function(require, exports) {
             // 切换图表类型，委托
             $('#select-chart-type').on('click', function(e) {
 
-                console.log('clicked')
-
                 if (e.target.nodeName === 'LI') {
-
-                    console.log('li')
 
                     var target = $('.control.selected')
 
@@ -141,9 +137,12 @@ define(function(require, exports) {
                     var chart = target.data('chart'),
                         data = target.data('data')
 
+                    // 重置类型，并重绘图表
                     var type = e.target.innerHTML
                     
                     data.chart.type = type
+
+                    chart.redraw()
                 }                
             })
 
