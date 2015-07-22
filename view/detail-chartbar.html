@@ -21,12 +21,58 @@
             </div>
         </dd>
     </dl>
+
+    <dl class="clearfix">
+        <dt>坐标轴</dt>
+        <dd>
+            <button id="chart-axis" class="checkbox" data-value="checked"></button>
+        </dd>
+    </dl>
+
+    <dl class="clearfix">
+        <dt>信息</dt>
+        <dd>
+            <button id="chart-message" class="checkbox" data-value="checked"></button>
+        </dd>
+    </dl>
+
+    <dl class="clearfix">
+        <dt>图例</dt>
+        <dd>
+            <button id="chart-legend" class="checkbox" data-value="checked"></button>
+        </dd>
+    </dl>
+
     <button id="chart-style" class="button">编辑样式</button>
+
+    <div class="box">
+        <dl class="clearfix">
+            <dt>标题</dt>
+            <dd>
+                <input id="chart-title" class="textbox" type="text" />
+            </dd>
+        </dl>
+
+        <dl class="clearfix">
+            <dt>X轴标题</dt>
+            <dd>
+                <input id="chart-xAxisTitle" class="textbox" type="text" />
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt>Y轴标题</dt>
+            <dd>
+                <input id="chart-yAxisTitle" class="textbox" type="text">
+            </dd>
+        </dl>
+    </div>
+
 </div>
 
 <div class="settings source">
+    
     <dl class="clearfix">
-        <dt>数据源</dt>
+        <dt>数据表</dt>
         <dd>
             <div id="select-data" class="select">
                 <span class="select-value"></span>
@@ -39,42 +85,11 @@
             </div>
         </dd>
     </dl>
-
-    <dl class="clearfix">
-        <dt>数据库</dt>
-        <dd>
-            <!-- <span class="select-value"></span> -->
-
-            <div id="select-data-source" class="select">
-                <span class="select-value"></span>
-                <!-- <i></i>
-                <div class="select-wrapper">
-                    <div class="select-list">
-                        <ul></ul>
-                    </div>
-                </div> -->
-            </div>
-        </dd>
-    </dl>
-    <dl class="clearfix">
-        <dt>数据表</dt>
-        <dd>
-            <div id="select-data-table" class="select">
-                <span class="select-value slect-value-width"></span>
-                <i></i>
-                <div class="select-wrapper">
-                    <div class="select-list">
-                        <ul></ul>
-                    </div>
-                </div>
-            </div>
-        </dd>
-    </dl>
     <div class="pair">
         <dl class="clearfix">
-            <dt>第一列</dt>
+            <dt>xAxis</dt>
             <dd>
-                <div id="select-column-1" class="select">
+                <div id="select-data-axis" class="select">
                     <span class="select-value"></span>
                     <i></i>
                     <div class="select-wrapper">
@@ -87,9 +102,9 @@
         </dl>
 
         <dl class="clearfix">
-            <dt>第二列</dt>
+            <dt>series</dt>
             <dd>
-                <div id="select-column-2" class="select">
+                <div id="select-data-series" class="select">
                     <span class="select-value"></span>
                     <i></i>
                     <div class="select-wrapper">
@@ -100,9 +115,22 @@
                 </div>
             </dd>
         </dl>
+    
+        <div>
+            <a id="add-series" href="#">add series.</a>
+        </div>
+    
+        <!--
+        <dl class="clearfix">
+            <dt></dt>
+            <dd>
+                <a href="#">add series.</a>
+            </dd>
+        </dl>
+        -->
 
         <dl class="clearfix">
-            <dt>第三列</dt>
+            <dt>colors</dt>
             <dd>
                 <div id="select-column-3" class="select">
                     <span class="select-value"></span>
@@ -115,7 +143,8 @@
                 </div>
             </dd>
         </dl>
-
+    
+        <!--
         <dl class="clearfix">
             <dt>第四列</dt>
             <dd>
@@ -130,7 +159,8 @@
                 </div>
             </dd>
         </dl>    
+    -->
     </div>
 
-    <button id="bind-data" class="button">查看数据</button>
+    <!--<button id="bind-data" class="button">查看数据</button>-->
 </div>
