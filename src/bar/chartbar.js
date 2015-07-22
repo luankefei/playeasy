@@ -87,7 +87,23 @@ define(function(require, exports) {
         this.data = []
 
         // 激活事件
-        var initEvents = function(render) {
+        var bindEvents = function(render) {
+
+            // 切换图表工具条面板
+            $(render).find('.tabbar li').on('click', function() {
+
+                // 移除过期的状态，设置新状态
+                $(this).parent().find('.selected').removeClass('selected')
+                $(this).addClass('selected')
+
+                var index = $(this).index()
+
+                $(render).find('.settings')
+                    .hide()
+                    .eq(index)
+                    .show()
+
+            })
 
             // 切换图表类型，委托
             $('#select-chart-type').on('click', function(e) {
@@ -138,7 +154,7 @@ define(function(require, exports) {
             $(base.render).load('/view/detail-chartbar.html', function() {
 
                 // 最后激活事件，在构造函数内执行，保证事件只绑定一次
-                initEvents(base.render)
+                bindEvents.call(base, base.render)
             })
             
         } (this)
@@ -190,4 +206,5 @@ define(function(require, exports) {
  * 2015.7.22
  * 重构了initOptions，类型从全局配置SETTING中获取
  * 重构了ChartBar，删除了未被使用的属性
+ * 修改了bindEvents，增加面板切换事件
  */

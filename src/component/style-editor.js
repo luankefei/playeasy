@@ -117,11 +117,6 @@ define(function(require, exports, module) {
 
                             chart.redraw()
 
-                            // var chart = new Highcharts.Chart(value)
-
-                            // target.data('data', value)
-                            //     .data('chart', chart)
-
                         } catch(e) {
 
                         }
