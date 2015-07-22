@@ -48,7 +48,9 @@
     "#eda7bb",
     "#ff6f76"
   ],
-  "title": "",
+  "title": {
+    "text": "图表标题"
+  },
   "credits": {
     "enabled": false
   },
