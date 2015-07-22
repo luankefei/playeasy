@@ -25,7 +25,6 @@ define(function(require, exports) {
         })
     }
 
-
     exports.init = function() {
 
         $('#password').on('keypress', function(e) {

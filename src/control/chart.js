@@ -37,8 +37,9 @@ define(function(require, exports, module) {
                 base.chart = new Highcharts.Chart(base.data)
 
                 // 将图表对象与dom对象关连
-                $(base.target).data('chart', base.chart)
-                $(base.target).data('data', base.data)
+                $(base.target).data('chart', base)
+                    .data('highchart', base.chart)
+                    .data('data', base.data)
             })
         }
 
@@ -61,6 +62,19 @@ define(function(require, exports, module) {
             return this.target
         }
 
+        // 重绘
+        this.redraw = function() {
+
+            var chart = new Highcharts.Chart(this.data)
+
+            $(this.target).data('data', this.data)
+                .data('chart', this)
+                .data('highchart', chart)
+        }
+
+        // 更新
+        this.update = function() {}
+
         return this
     }
 
@@ -77,4 +91,7 @@ define(function(require, exports, module) {
  * 2015.7.17
  * 增加了data属性，绘图数据将记录在这里
  * 修改了draw函数，绘图结束后，将图表对象与dom对象关连
+ * 2015.7.22
+ * 增加了redraw方法，用于完全重绘当前图表
+ * 增加了update方法，用于更新图表
  */

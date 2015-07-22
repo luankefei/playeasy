@@ -129,7 +129,11 @@ define(function(require, exports) {
             // 切换图表类型，委托
             $('#select-chart-type').on('click', function(e) {
 
+                console.log('clicked')
+
                 if (e.target.nodeName === 'LI') {
+
+                    console.log('li')
 
                     var target = $('.control.selected')
 
