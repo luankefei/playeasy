@@ -89,36 +89,61 @@ define(function(require, exports) {
         // 激活事件
         var bindEvents = function(render) {
 
+            $('#select-data').on('click', function() {
+
+                var tables = ['hahhaha', 'tatata']
+
+                var ul = $('#select-data').find('ul')
+
+                var html = ''
+
+                tables.forEach(function(v, i, a) {
+
+                    html += '<li>' + v + '</li>'
+                })
+
+                ul.html(html)
+
+                
+            })
+            // var ul = $('#select-data').find('ul')
+            // ul.html('<li>1</li><li>2</li>')
             // TODO: 需要重构
             // 选择数据表
-            $('#select-data').on('click', function() {
+            $('#test_select-data').on('click', function() {
 
                 // 每次点击选择数据表，重置下拉列表中的选项
                 // 每次选中图表，都要重置下拉列表当前选中项
                 var nodes = $('#left-bar').find('section.data')
                     .find('dt')
                 
-                var tables = []
+                var tables = ['hahhaha', 'tatata']
 
                 for (var i = 0; i < nodes.length; i++) {
 
                     tables.push(nodes[i].innerHTML)
                 }
 
-                var ul = $(this).find('.select-list > ul')
+                // 
+                // var ul = $(this).find('ul')
+                var ul = $('#select-data').find('ul')
 
                 // 清空下拉列表原有内容
-                ul.html('')
+                // ul.html('')
+
+                var html = ''
 
                 // 向下拉列表中追加内容
                 tables.forEach(function(v, i, a) {
 
-                    var li = $.create('li')
-
-                    li.html(v)
-
-                    ul.append(li)
+                    html += '<li>' + v + '</li>'
                 })
+
+                ul.html(html)
+
+                // TODO: 测试代码
+                $('#select-data-series').find('ul').html('<li>测试1</li><li>测试2</li>')
+
             })
 
             // 切换图表工具条面板

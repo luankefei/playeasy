@@ -39,6 +39,8 @@
 
     $('.select-list li').live('click', function(e) {
         
+        console.log('select item clicked.')
+
         var target = $(this)
 
         var text = target.html()

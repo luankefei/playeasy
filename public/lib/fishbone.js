@@ -2347,16 +2347,22 @@ Event.live = function(type, handler) {
     // live的实现，模仿jquery。但内部调用queryselector来匹配对象
     document.addEventListener(type, function(e) {
 
-        var loop = 0
+        // var loop = 0
 
         var nodes = document.querySelectorAll(selector)
         var target = e.target
+
+        // if (target)
+        // console.log('------------------------------------------------------')
+        // console.log('target: ' + target.nodeName)
+        // console.log(selector)
+        // console.log(nodes)
 
         do {
 
             for (var i = 0; i < nodes.length; i++) {
 
-                ++loop
+                // ++loop
 
                 if (nodes[i] === target) {
 
@@ -2366,9 +2372,16 @@ Event.live = function(type, handler) {
                 }
             }
 
+            // console.log('loop target: ' + target.nodeName)
+            // console.log('loop target parent: ' + target.parentNode)
+            // console.log(target)
+
             target = target.parentNode
 
-        } while (target !== document)
+        } while (target !== document && target !== null)
+
+        // e.preventDefualt()
+        e.stopPropagation()
     })
 }
 
