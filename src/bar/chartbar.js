@@ -89,6 +89,19 @@ define(function(require, exports) {
         // 绑定事件
         var bindEvents = function(render) {
 
+            // x轴的拖放
+            $('#input-data-axis').on('drop', function(e) {
+
+                var name = e.dataTransfer.getData('name')
+
+                this.value = name
+            })
+
+            $('#input-data-axis').on('dragover', function(e) {
+
+                e.preventDefault()
+            })
+
             // 选择数据表
             // TODO: 需要重构
             // 通过e.target进行区分，点击的是列表项还是列表本身
@@ -135,7 +148,6 @@ define(function(require, exports) {
                     .hide()
                     .eq(index)
                     .show()
-
             })
 
             // 切换图表类型，委托

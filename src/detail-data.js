@@ -11,6 +11,25 @@ define(function(require, exports) {
 
     var convert = require('./detail-convert')
 
+    // 给新添加的列名绑定拖放事件
+    function bindDrop() {
+
+        // 获取含有拖拽属性的标签
+        var nodes = $('.data-column:not([draggable])')
+
+        // 添加属性，激活拖放
+        nodes.attr('draggable', 'true')
+
+        nodes.on('dragstart', function(e) {
+
+            console.log('dragstart')
+
+            var name = e.target.innerHTML
+
+            e.dataTransfer.setData('name', name)
+        })
+    }
+
     // 将上传好的数据字段，生成html代码并显示在列表的左侧
     // TODO: 低效率
     var displayOnDataList = function(name, data) {
@@ -28,11 +47,12 @@ define(function(require, exports) {
 
         dt.html(name)
 
-        var html = ''
+        var html = '',
+            className = 'data-column'
 
         for (var k in data[0]) {
 
-            html = html + '<li class="data-column" draggable="true">' + k + '</li>'
+            html = html + '<li class="' + className + '">' + k + '</li>'
         }
 
         ul.html(html)
@@ -54,6 +74,9 @@ define(function(require, exports) {
 
             // 显示在数据列表上
             displayOnDataList(file.name, data)
+
+            // 给新添加的列明绑定拖放事件
+            bindDrop()
         }
     }
 
@@ -97,4 +120,5 @@ define(function(require, exports) {
 /**
  * 2015.7.27
  * 修改了displayOnDataList的dom生成，准备添加拖拽事件
+ * 增加了bindDrop函数，用于激活drop事件
  */
