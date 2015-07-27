@@ -12,6 +12,7 @@ define(function(require, exports) {
     var convert = require('./detail-convert')
 
     // 将上传好的数据字段，生成html代码并显示在列表的左侧
+    // TODO: 低效率
     var displayOnDataList = function(name, data) {
 
         var wrap = $('#left-bar > .data')
@@ -31,7 +32,7 @@ define(function(require, exports) {
 
         for (var k in data[0]) {
 
-            html = html + '<li>' + k + '</li>'
+            html = html + '<li class="data-column" draggable="true">' + k + '</li>'
         }
 
         ul.html(html)
