@@ -43,19 +43,27 @@ define(function(require, exports) {
 
         dl.append(dt)
             .append(dd)
-            .data(data)
 
         dt.html(name)
+            .attr('data-name', name)
+            .data('data', data)
 
         var html = '',
             className = 'data-column'
 
         for (var k in data[0]) {
 
-            html = html + '<li class="' + className + '">' + k + '</li>'
+            var li = $.create('li')
+
+            li.attr('class', className)
+                .attr('data-name', k)
+                .html(k)
+
+            li.appendTo(ul)
+            // html = html + '<li class="' + className + '" data-name="' + k + '">' + k + '</li>'
         }
 
-        ul.html(html)
+        // ul.html(html)
         dd.append(ul)
         
         wrap.append(dl)
@@ -121,4 +129,5 @@ define(function(require, exports) {
  * 2015.7.27
  * 修改了displayOnDataList的dom生成，准备添加拖拽事件
  * 增加了bindDrop函数，用于激活drop事件
+ * 修改了displayOnDataList，在dt和li上面绑定了data-name，便于css选择器查找
  */

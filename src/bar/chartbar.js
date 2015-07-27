@@ -89,15 +89,69 @@ define(function(require, exports) {
         // 绑定事件
         var bindEvents = function(render) {
 
-            // x轴的拖放
-            $('#input-data-axis').on('drop', function(e) {
+            // TODO: 提炼
+            // series的拖放
+            $('#input-data-series').on('drop', function(e) {
 
+                // 修改输入框的值
                 var name = e.dataTransfer.getData('name')
 
                 this.value = name
+
+                // 按照列名获取数据
+                var tableName = $('#select-data').find('.select-value').html()
+                var columnName = this.value
+
+                var data = $('#left-bar section.data').find('dt[data-name="' + tableName + '"]')
+                    .data('data')
+
+                // 将json按字段名提取，生成数组
+                var dataArr = []
+
+                data.forEach(function(v) {
+
+                    dataArr.push(parseFloat(v[columnName]))
+                })
+
+                // TODO: 频繁操作，应该提取为公共对象
+                var chart = $('.control.selected').data('chart')
+
+                chart.data.series[0].data = dataArr
+                chart.redraw()
             })
 
-            $('#input-data-axis').on('dragover', function(e) {
+            // TODO: 提炼
+            // x轴的拖放
+            $('#input-data-axis').on('drop', function(e) {
+
+                // 修改输入框的值
+                var name = e.dataTransfer.getData('name')
+
+                this.value = name
+
+                // 按照列名获取数据
+                var tableName = $('#select-data').find('.select-value').html()
+                var columnName = this.value
+
+                var data = $('#left-bar section.data').find('dt[data-name="' + tableName + '"]')
+                    .data('data')
+
+                // 将json按字段名提取，生成数组
+                var dataArr = []
+
+                data.forEach(function(v) {
+
+                    dataArr.push(v[columnName])
+                })
+
+                // TODO: 频繁操作，应该提取为公共对象
+                var chart = $('.control.selected').data('chart')
+
+                chart.data.xAxis.categories = dataArr
+                chart.redraw()
+            })
+
+            $('#input-data-axis, #input-data-series').on('dragover', function(e) {
 
                 e.preventDefault()
             })
@@ -193,6 +247,7 @@ define(function(require, exports) {
         // 构造函数，负责初始化整个工具条对象
         ! function(base) {
 
+            base.target = $('.control.selected')[0]
             base.render = render
 
             // 初始化：加载右侧工具条
