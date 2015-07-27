@@ -93,3 +93,8 @@ define(function(require, exports) {
         handleUpload.call(this)
     })
 })
+
+/**
+ * 2015.7.27
+ * 修改了displayOnDataList的dom生成，准备添加拖拽事件
+ */
