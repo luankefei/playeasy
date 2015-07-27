@@ -47,7 +47,6 @@ define(function(require, exports) {
     }
 })
 
-
 /**
  * 2015.7.13
  * 增加了模块的init函数

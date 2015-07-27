@@ -86,66 +86,42 @@ define(function(require, exports) {
         // 数据
         this.data = []
 
-        // 激活事件
+        // 绑定事件
         var bindEvents = function(render) {
 
-            $('#select-data').on('click', function() {
-
-                var tables = ['hahhaha', 'tatata']
-
-                var ul = $('#select-data').find('ul')
-
-                var html = ''
-
-                tables.forEach(function(v, i, a) {
-
-                    html += '<li>' + v + '</li>'
-                })
-
-                ul.html(html)
-
-                
-            })
-            // var ul = $('#select-data').find('ul')
-            // ul.html('<li>1</li><li>2</li>')
-            // TODO: 需要重构
             // 选择数据表
-            $('#test_select-data').on('click', function() {
-
-                // 每次点击选择数据表，重置下拉列表中的选项
-                // 每次选中图表，都要重置下拉列表当前选中项
-                var nodes = $('#left-bar').find('section.data')
-                    .find('dt')
+            // TODO: 需要重构
+            // 通过e.target进行区分，点击的是列表项还是列表本身
+            $('#select-data').on('click', function(e) {
                 
-                var tables = ['hahhaha', 'tatata']
+                if (e.target === this) {
 
-                for (var i = 0; i < nodes.length; i++) {
+                    // 每次点击选择数据表，重置下拉列表中的选项
+                    // 每次选中图表，都要重置下拉列表当前选中项
+                    var nodes = $('#left-bar').find('section.data')
+                        .find('dt')
 
-                    tables.push(nodes[i].innerHTML)
-                }
+                    var tables = []
 
-                // 
-                // var ul = $(this).find('ul')
-                var ul = $('#select-data').find('ul')
+                    // 向数组中添加所有的表名
+                    for (var i = 0; i < nodes.length; i++) {
 
-                // 清空下拉列表原有内容
-                // ul.html('')
+                        tables.push(nodes[i].innerHTML)
+                    }
 
-                var html = ''
+                    // 向下拉列表中追加内容
+                    var ul = $('#select-data').find('ul')
+                    var html = ''
 
-                // 向下拉列表中追加内容
-                tables.forEach(function(v, i, a) {
+                    tables.forEach(function(v, i, a) {
 
-                    html += '<li>' + v + '</li>'
-                })
+                        html += '<li>' + v + '</li>'
+                    })
 
-                ul.html(html)
-
-                // TODO: 测试代码
-                $('#select-data-series').find('ul').html('<li>测试1</li><li>测试2</li>')
-
+                    ul.html(html)
+                } // end if
             })
-
+            
             // 切换图表工具条面板
             $(render).find('.tabbar li').on('click', function() {
 
@@ -265,4 +241,6 @@ define(function(require, exports) {
  * 重构了ChartBar，删除了未被使用的属性
  * 修改了bindEvents，增加面板切换事件
  * 增加了select-data点击事件，用于选择数据表
+ * 2015.7.27
+ * 更新#select-data的点击事件，增加了e.target判断，修复了之前列表项点击事件失效的bug
  */
