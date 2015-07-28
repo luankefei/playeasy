@@ -75,6 +75,16 @@ define(function(require, exports, module) {
         // 更新
         this.update = function() {}
 
+        this.addSeries = function() {
+
+            var series = {
+                
+                data: []
+            }
+
+            this.data.series.push(series)
+        }
+
         return this
     }
 
@@ -94,4 +104,6 @@ define(function(require, exports, module) {
  * 2015.7.22
  * 增加了redraw方法，用于完全重绘当前图表
  * 增加了update方法，用于更新图表
+ * 2015.7.28
+ * 增加了addSeries方法，用于扩展series
  */

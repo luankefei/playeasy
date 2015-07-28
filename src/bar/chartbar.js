@@ -86,6 +86,44 @@ define(function(require, exports) {
         // 数据
         this.data = []
 
+        // 拖放事件的处理函数
+        var dropHandler = function(e) {
+
+            console.log('in')
+
+            var data = getDataByColumn.call(this, e.dataTransfer.getData('name'))
+
+            // TODO: 频繁操作，应该提取为公共对象
+            // TODO: 很多属性都应该用shadow dom代替，现阶段为了直观用attr处理
+            // TODO: 暂时，只有series需要index属性
+            // 
+            var chart = $('.control.selected').data('chart'),
+                name = $(this).attr('data-name'),
+                index = $(this).attr('data-sarial')
+                
+            index = !!index ? parseInt(index) : 0
+
+            var hash = {
+
+                xAxis: function(data) {
+                    
+                    chart.data.xAxis.categories = data
+                },
+
+                series: function(data) {
+
+                    chart.data.series[index].data = data
+                },
+
+                'colors': ''
+            }
+
+            // TODO: 应该用一个函数处理数据的关系，如sereis1 映射到 series[0].data
+            hash[name].call(null, data)
+
+            chart.redraw()
+        }
+
         // 按照列名和表名从数据源获取数据
         var getDataByColumn = function(name) {
 
@@ -119,7 +157,7 @@ define(function(require, exports) {
 
                 var container = $(this).parent().parent()
 
-                var index = container.find('input[data-name="series"]').length + 1
+                var index = container.find('input[data-name="series"]').length
                 var dl = $.create('dl').addClass('clearfix')
 
                 dl.html('<dt></dt><dd></dd>')
@@ -127,48 +165,28 @@ define(function(require, exports) {
 
                 container[0].insertBefore(dl[0], $(this).parent()[0])
 
+                // 为新添加的输入框绑定拖放事件
+                var input = dl.find('input')
+
+                input.on('dragover', function(e) {
+
+                    e.preventDefault()
+                })
+
+                input.on('drop', dropHandler)
+
+                // 增加当前选中图表的series
+                $('.control.selected').data('chart').addSeries()
+
+                // TODO: 需要在切换选中目标时，初始化
+                console.error('log here')
+
                 e.preventDefault()
                 e.stopPropagation()
-
-                // TODO: 需要激活事件
-                // TODO: 需要完善图表config
-                // TODO: 需要在切换选中目标时，初始化
             })
 
             // 尝试整合数据面板的拖拽
-            $('#chart-bar .pair input').on('drop', function(e) {
-
-                var data = getDataByColumn.call(this, e.dataTransfer.getData('name'))
-
-                // TODO: 频繁操作，应该提取为公共对象
-                // TODO: 很多属性都应该用shadow dom代替，现阶段为了直观用attr处理
-                // TODO: 暂时，只有series需要index属性
-                var chart = $('.control.selected').data('chart'),
-                    name = $(this).attr('data-name'),
-                    index = $(this).attr('data-sarial')
-                    
-                index = !!index ? parseInt(index) : 0
-
-                var hash = {
-
-                    xAxis: function(data) {
-                        
-                        chart.data.xAxis.categories = data
-                    },
-
-                    series: function(data) {
-
-                        chart.data.series[index].data = data
-                    },
-
-                    'colors': ''
-                }
-
-                // TODO: 应该用一个函数处理数据的关系，如sereis1 映射到 series[0].data
-                hash[name].call(null, data)
-
-                chart.redraw()
-            })
+            $('#chart-bar .pair input').on('drop', dropHandler)
 
             // 组织dragover的默认行为
             $('#chart-bar .pair input').on('dragover', function(e) {
@@ -332,4 +350,5 @@ define(function(require, exports) {
  * 更新#select-data的点击事件，增加了e.target判断，修复了之前列表项点击事件失效的bug
  * 2015.7.28
  * 将右侧数据面板的拖拽绑定数据改为通用事件
+ * 修改了drop事件，分离出独立的函数dropHandler
  */
