@@ -86,81 +86,73 @@ define(function(require, exports) {
         // 数据
         this.data = []
 
+        // 按照列名和表名从数据源获取数据
+        var getDataByColumn = function(name) {
+
+            this.value = name
+
+            // 按照列名获取数据
+            var tableName = $('#select-data').find('.select-value').html()
+            var columnName = this.value
+
+            var data = $('#left-bar section.data').find('dt[data-name="' + tableName + '"]')
+                .data('data')
+
+            // 将json按字段名提取，生成数组
+            var dataArr = []
+
+            data.forEach(function(v) {
+
+                dataArr.push(parseFloat(v[columnName]))
+            })
+
+            return dataArr
+        }
+
         // 绑定事件
         var bindEvents = function(render) {
 
-            // TODO: 提炼
-            // series的拖放
-            $('#input-data-series').on('drop', function(e) {
+            // 尝试整合数据面板的拖拽
+            $('#chart-bar .pair input').on('drop', function(e) {
 
-                // 修改输入框的值
-                var name = e.dataTransfer.getData('name')
-
-                this.value = name
-
-                // 按照列名获取数据
-                var tableName = $('#select-data').find('.select-value').html()
-                var columnName = this.value
-
-                var data = $('#left-bar section.data').find('dt[data-name="' + tableName + '"]')
-                    .data('data')
-
-                // 将json按字段名提取，生成数组
-                var dataArr = []
-
-                data.forEach(function(v) {
-
-                    dataArr.push(parseFloat(v[columnName]))
-                })
+                var data = getDataByColumn.call(this, e.dataTransfer.getData('name'))
 
                 // TODO: 频繁操作，应该提取为公共对象
-                var chart = $('.control.selected').data('chart')
+                // TODO: 很多属性都应该用shadow dom代替，现阶段为了直观用attr处理
+                // TODO: 暂时，只有series需要index属性
+                var chart = $('.control.selected').data('chart'),
+                    name = $(this).attr('data-name'),
+                    index = $(this).attr('data-sarial')
 
-                chart.data.series[0].data = dataArr
+                var hash = {
+                    'xAxis': (function() {
+                        return chart.data.xAxis.categories
+                    })(),
+                    'series': (function() {
+                        return chart.data.series[index].data
+                    })(),
+                    'colors': ''
+                }
+
+                // TODO: 应该用一个函数处理数据的关系，如sereis1 映射到 series[0].data
+                data = hash[name]
+
+                console.log()
+
                 chart.redraw()
             })
 
-            // TODO: 提炼
-            // x轴的拖放
-            $('#input-data-axis').on('drop', function(e) {
-
-                // 修改输入框的值
-                var name = e.dataTransfer.getData('name')
-
-                this.value = name
-
-                // 按照列名获取数据
-                var tableName = $('#select-data').find('.select-value').html()
-                var columnName = this.value
-
-                var data = $('#left-bar section.data').find('dt[data-name="' + tableName + '"]')
-                    .data('data')
-
-                // 将json按字段名提取，生成数组
-                var dataArr = []
-
-                data.forEach(function(v) {
-
-                    dataArr.push(v[columnName])
-                })
-
-                // TODO: 频繁操作，应该提取为公共对象
-                var chart = $('.control.selected').data('chart')
-
-                chart.data.xAxis.categories = dataArr
-                chart.redraw()
-            })
-
-            $('#input-data-axis, #input-data-series').on('dragover', function(e) {
+            // 组织dragover的默认行为
+            $('#chart-bar .pair input').on('dragover', function(e) {
 
                 e.preventDefault()
             })
 
             // 选择数据表
             // TODO: 需要重构
-            // 通过e.target进行区分，点击的是列表项还是列表本身
             $('#select-data').on('click', function(e) {
                 
+                // 通过e.target进行区分，点击的是列表项还是列表本身    
                 if (e.target === this) {
 
                     // 每次点击选择数据表，重置下拉列表中的选项
