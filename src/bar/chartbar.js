@@ -24,9 +24,6 @@ define(function(require, exports) {
         // 初始化下拉列表
         bar.chartTypeSupports = SETTING.chart.supportsType
 
-        console.log('-------- set series count -------')
-        console.log(chart.data.series.length)
-
         // 初始化series
         bar.seriesCount = chart.data.series.length
     }
@@ -86,14 +83,7 @@ define(function(require, exports) {
         var currentSeries = $('#chart-bar .pair input[data-name="series"]'),
             currentSeriesLength = currentSeries.length
 
-
-        console.log('refresh render')
-        console.log('series count: ' + base.seriesCount)
-        console.log('current count: ' + currentSeriesLength)
-
         if (base.seriesCount > currentSeriesLength) {
-
-            console.log('in add')
 
             for (var i = currentSeriesLength; i < base.seriesCount; i++) {
 
@@ -109,12 +99,7 @@ define(function(require, exports) {
         // TODO: 测试通过
         } else if (base.seriesCount < currentSeriesLength) {
 
-            console.log('in delete')
-
             for (var i = currentSeriesLength; i >= base.seriesCount; i--) {
-
-                console.log(i)
-                console.log(currentSeries.eq(i))
 
                 currentSeries.eq(i).parent().parent().remove()
             }
