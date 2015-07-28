@@ -103,7 +103,9 @@ define(function(require, exports) {
 
             data.forEach(function(v) {
 
-                dataArr.push(parseFloat(v[columnName]))
+                var temp = parseFloat(v[columnName])
+
+                dataArr.push(!!temp ? temp : v[columnName])
             })
 
             return dataArr
@@ -123,21 +125,26 @@ define(function(require, exports) {
                 var chart = $('.control.selected').data('chart'),
                     name = $(this).attr('data-name'),
                     index = $(this).attr('data-sarial')
+                    
+                index = !!index ? parseInt(index) : 0
 
                 var hash = {
-                    'xAxis': (function() {
-                        return chart.data.xAxis.categories
-                    })(),
-                    'series': (function() {
-                        return chart.data.series[index].data
-                    })(),
+
+                    xAxis: function(data) {
+                        
+                        chart.data.xAxis.categories = data
+                    },
+
+                    series: function(data) {
+
+                        chart.data.series[index].data = data
+                    },
+
                     'colors': ''
                 }
 
                 // TODO: 应该用一个函数处理数据的关系，如sereis1 映射到 series[0].data
-                data = hash[name]
-
-                console.log()
+                hash[name].call(null, data)
 
                 chart.redraw()
             })
