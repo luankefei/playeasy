@@ -70,7 +70,7 @@ define(function(require, exports, module) {
         // 加载左侧数据工具条
         var loadMap = {
             '#add-bar': '/view/detail-addbar.html',
-            '#start-bar': '/view/detail-startbar.html',
+            '#tool-bar': '/view/detail-toolbar.html',
             '#left-bar': '/view/detail-leftbar.html'
         }
 

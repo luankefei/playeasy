@@ -33,8 +33,8 @@ define(function(require, exports) {
 
         for (var i = 0; i < this.chartTypeSupports.length; i++) {
 
-            html = html 
-                + '<li>' 
+            html = html
+                + '<li>'
                 + this.chartTypeSupports[i]
                 + '</li>'
         }

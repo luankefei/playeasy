@@ -24,6 +24,12 @@ define(function(require, exports) {
         // 控件的拖拽事件
         $('.control').live('mousedown', function(e) {
 
+            // 如果不是鼠标左键，直接退出
+            if (e.which !== 1) {
+
+                return false
+            }
+
             var target = $(this)
             var mouseStart = { x: e.pageX, y: e.pageY },
                 controlStart = {
