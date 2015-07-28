@@ -23,6 +23,12 @@ define(function(require, exports) {
 
         // 初始化下拉列表
         bar.chartTypeSupports = SETTING.chart.supportsType
+
+        console.log('-------- set series count -------')
+        console.log(chart.data.series.length)
+
+        // 初始化series
+        bar.seriesCount = chart.data.series.length
     }
 
     // 刷新DOM
@@ -66,6 +72,55 @@ define(function(require, exports) {
             }
 
         }, 200)
+
+        var base = this
+
+        // TODO: 测试的timeout
+        setTimeout(function() {
+
+        // 初始化series输入框
+        // TODO: 这里的代码和add-series点击事件重复
+        // 如果seriesCount大于当前数量，增加
+        // 如果seriesCount小于当前数量，删除
+        // TODO: 第一次执行，工具条页面代码还没有加载完成，会进入add条件
+        var currentSeries = $('#chart-bar .pair input[data-name="series"]'),
+            currentSeriesLength = currentSeries.length
+
+
+        console.log('refresh render')
+        console.log('series count: ' + base.seriesCount)
+        console.log('current count: ' + currentSeriesLength)
+
+        if (base.seriesCount > currentSeriesLength) {
+
+            console.log('in add')
+
+            for (var i = currentSeriesLength; i < base.seriesCount; i++) {
+
+                var container = $('#chart-bar .pair')
+                var dl = $.create('dl').addClass('clearfix')
+
+                dl.html('<dt></dt><dd></dd>')
+                dl.find('dd').html('<input class="textbox" type="text" data-name="series" data-sarial="' + i + '" />')
+
+                container[0].insertBefore(dl[0], $('#add-series').parent()[0])
+            }
+
+        // TODO: 测试通过
+        } else if (base.seriesCount < currentSeriesLength) {
+
+            console.log('in delete')
+
+            for (var i = currentSeriesLength; i >= base.seriesCount; i--) {
+
+                console.log(i)
+                console.log(currentSeries.eq(i))
+
+                currentSeries.eq(i).parent().parent().remove()
+            }
+        }
+
+        }, 500)
     }
 
     // 工具条在初次添加控件的时候初始化，通过单例创建
@@ -82,6 +137,9 @@ define(function(require, exports) {
 
         // 支持的图表类型
         this.chartTypeSupports = []
+
+        //
+        this.seriesCount = 1
 
         // 数据
         this.data = []
@@ -177,9 +235,6 @@ define(function(require, exports) {
 
                 // 增加当前选中图表的series
                 $('.control.selected').data('chart').addSeries()
-
-                // TODO: 需要在切换选中目标时，初始化
-                console.error('log here')
 
                 e.preventDefault()
                 e.stopPropagation()
