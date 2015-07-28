@@ -114,6 +114,27 @@ define(function(require, exports) {
         // 绑定事件
         var bindEvents = function(render) {
 
+            // 添加series，点击后生成dom，并修改当前选中图表的config，初始化时重置
+            $('#add-series').on('click', function(e) {
+
+                var container = $(this).parent().parent()
+
+                var index = container.find('input[data-name="series"]').length + 1
+                var dl = $.create('dl').addClass('clearfix')
+
+                dl.html('<dt></dt><dd></dd>')
+                dl.find('dd').html('<input class="textbox" type="text" data-name="series" data-sarial="' + index + '" />')
+
+                container[0].insertBefore(dl[0], $(this).parent()[0])
+
+                e.preventDefault()
+                e.stopPropagation()
+
+                // TODO: 需要激活事件
+                // TODO: 需要完善图表config
+                // TODO: 需要在切换选中目标时，初始化
+            })
+
             // 尝试整合数据面板的拖拽
             $('#chart-bar .pair input').on('drop', function(e) {
 
@@ -309,4 +330,6 @@ define(function(require, exports) {
  * 增加了select-data点击事件，用于选择数据表
  * 2015.7.27
  * 更新#select-data的点击事件，增加了e.target判断，修复了之前列表项点击事件失效的bug
+ * 2015.7.28
+ * 将右侧数据面板的拖拽绑定数据改为通用事件
  */
