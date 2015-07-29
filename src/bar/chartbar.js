@@ -195,6 +195,29 @@ define(function(require, exports) {
         // 绑定事件
         var bindEvents = function(render) {
 
+            // chart-title keyup事件的延迟状态
+            var chartTitleWait = false
+
+            // 改变图表标题
+            $('#chart-title').on('keyup', function() {
+
+                var chart = $('.control.selected').data('chart')
+
+                chart.data.title.text = this.value
+
+                // 这里需要做延迟处理
+                if (!chartTitleWait) {
+
+                    chartTitleWait = setTimeout(function() {
+                        
+                        chart.redraw()
+
+                        chartTitleWait = false
+
+                    }, 500)
+                }
+            })
+
             // 添加series，点击后生成dom，并修改当前选中图表的config，初始化时重置
             $('#add-series').on('click', function(e) {
 
