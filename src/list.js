@@ -97,7 +97,7 @@ define(function(require, exports) {
     }
 
     // TODO: 排序貌似有问题，现在是乱序，应该是按照imgReady的返回顺序进行排列的
-    var layoutTemplates = function(data) {
+    var layoutTemplates = function(data, callback) {
 
         var heightArr = getColumnHeight()
         var dataArr = []
@@ -145,16 +145,18 @@ define(function(require, exports) {
 
         var wait = setInterval(function() {
             
+
             // TODO: 这个判断能够确保所有数据都在dataArr，不明觉历
             if (data.length > 0 
                 && typeof dataArr !== 'undefined' 
                 && dataArr.length > 0) {
             
+                callback && callback(dataArr)
+
+
             // TODO: 如果图片url错误，imgReady不会触发回调，dataArr.length不一定等于data.length
             // if (dataArr.length === data.length) {
                 clearInterval(wait)
-                
-                showTemplates(dataArr)
             }
 
         }, 30)
@@ -180,13 +182,34 @@ define(function(require, exports) {
                 .attr('src', m.thumbnail)
 
             t.find('.description').html(m.name)
-            t.find('.entry').attr('href', '/#!/detail?id=' + m.id)
+
+
+            console.log(t.find('.entry'))
+
+            t.find('.entry').attr('href', '/#!/detail?templateId=' + m.id)
+                .attr('data-id', m.id)
 
             $('#waterfall').append(t)
         }
 
         // 使瀑布流的所有模板同时显示
         $('#waterfall').find('.template').show()
+    }
+
+    // 绑定事件
+    function bindEvents() {
+
+        // $('.entry').on('click', function(e) {
+
+        //     var templateId = this.getAttribute('data-id')
+
+        //     // 显示创建
+        //     $('#create-doucment').show()
+        //     PE.toggleShadow()
+
+        //     e.preventDefault()
+        //     e.stopPropagation()
+        // })
     }
 
     var init = function() {
@@ -201,7 +224,13 @@ define(function(require, exports) {
         // 获取template
         getTemplate(1, 10, function(d) {
 
-            layoutTemplates(d.data)
+            layoutTemplates(d.data, function(data) {
+
+                showTemplates(data)
+
+                // 绑定事件
+                bindEvents()
+            })
         })
     }
 
@@ -214,4 +243,6 @@ define(function(require, exports) {
  * 修改showTemplates，将修改名字的text方法替换为html
  * 2015.7.13
  * 对外导出了init函数，供route.js调用
+ * 2015.8.6
+ * 增加了bindEvents函数，负责事件绑定
  */
