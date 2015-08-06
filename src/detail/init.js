@@ -12,8 +12,8 @@ define(function(require, exports, module) {
     var control = require('./control'),
         toolbar = require('./toolbar'),
         controlbar = require('./controlbar'),
-        data = require('./data')
-        // save = require('./detail-save')
+        databar = require('./databar'),
+        save = require('./save')
 
     var init = {}
 
@@ -136,13 +136,17 @@ define(function(require, exports, module) {
             // 高效，但不易读
             // var data = require('./detail-data')
             
-            $('#left-bar').show()
+            console.log(databar)
+
+            databar.init()
+
+            // $('#left-bar').show()
         })
 
-        // 保存并下载
-        $('#download').on('click', function() {
+        // 保存
+        $('#save').on('click', function() {
 
-            console.log('保存并下载')
+            save.build('html')
         })
     }
 

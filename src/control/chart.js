@@ -52,7 +52,7 @@ define(function(require, exports, module) {
                 .css('position', 'absolute')
                 .css('top', 0)
                 .css('left', 0)
-                .appendTo('.block-selected')
+                .appendTo('#canvas')
 
             this.target = target[0]
 

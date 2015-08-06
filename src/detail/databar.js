@@ -10,6 +10,7 @@
 define(function(require, exports) {
 
     var convert = require('./convert')
+    var databar = null
 
     // 给新添加的列名绑定拖放事件
     function bindDrop() {
@@ -88,41 +89,59 @@ define(function(require, exports) {
         }
     }
 
-    // 建立数据库连接：开始
-    $('#new-connect').on('click', function() {
 
-        $('.new-connect').show()
+    function bindEvents() {
 
-        PE.toggleShadow()
-    })
+        // 建立数据库连接：开始
+        $('#new-connect').on('click', function() {
 
-    // 建立数据源连接：下一页
-    $('.new-connect button:not([data-id="3"])').on('click', function(e) {
+            $('.new-connect').show()
 
-        var index = $(this).attr('data-id')
-        var currentPage = $('.new-connect .page[data-id="' + index + '"]')
-        var currentProgress = $('.new-connect .bar li.selected')
-            .next()
-            .addClass('selected')
+            PE.toggleShadow()
+        })
 
-        currentPage.hide()
-        currentPage.next().show()
-    })
+        // 建立数据源连接：下一页
+        $('.new-connect button:not([data-id="3"])').on('click', function(e) {
 
-    // 建立数据源连接：完成
-    $('.new-connect button[data-id="3"]').on('click', function(e) {
+            var index = $(this).attr('data-id')
+            var currentPage = $('.new-connect .page[data-id="' + index + '"]')
+            var currentProgress = $('.new-connect .bar li.selected')
+                .next()
+                .addClass('selected')
 
-        $('.new-connect').hide()
-        // TODO: 重置整个数据源配置流程
+            currentPage.hide()
+            currentPage.next().show()
+        })
 
-        PE.toggleShadow()
-    })
+        // 建立数据源连接：完成
+        $('.new-connect button[data-id="3"]').on('click', function(e) {
 
-    // 本地上传
-    $('#upload').on('change', function() {
+            $('.new-connect').hide()
+            // TODO: 重置整个数据源配置流程
 
-        handleUpload.call(this)
-    })
+            PE.toggleShadow()
+        })
+
+        // 本地上传
+        $('#upload').on('change', function() {
+
+            handleUpload.call(this)
+        })
+    }
+
+    exports.init = function() {
+
+        if (databar === null) {
+
+            console.log('in')
+
+            bindEvents()
+
+            $('#left-bar').show()
+
+            databar = true
+        }
+    }
 })
 
 /**
@@ -130,4 +149,8 @@ define(function(require, exports) {
  * 修改了displayOnDataList的dom生成，准备添加拖拽事件
  * 增加了bindDrop函数，用于激活drop事件
  * 修改了displayOnDataList，在dt和li上面绑定了data-name，便于css选择器查找
+ * 2015.8.6
+ * 文件更名为databar
+ * 重构了整个模块结构，暴露唯一的init接口，模拟了单例
+ * 增加了bindEvents函数，将事件的绑定移动到函数中
  */
