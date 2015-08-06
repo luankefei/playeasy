@@ -39,17 +39,13 @@ define(function(require, exports, module) {
     // 初始化画布
     init.initCanvas = function() {
 
-        console.log('---------------------------')
-        console.log('init canvas')
-        console.log(location)
-// /{(\w*)}/g
-
         var canvas = $('#canvas')
         var hash = location.hash        
 
         var query = hash.substring(hash.indexOf('?') + 1)
         var queryMap = {}
 
+        // 将url中的query按键值对形式整理到queryMap对象
         query.split('&').forEach(function(v, i) {
 
             v = v.split('=')
@@ -57,23 +53,13 @@ define(function(require, exports, module) {
             queryMap[v[0]] = v[1]
         })
 
+        // 按照queryMap中的key/value进行赋值
         for (var k in queryMap) {
 
-            // if (k instanceof queryMap) {
-
-                canvas.data(k, queryMap[k])    
-            // }
+            canvas.data(k, queryMap[k])    
         }
 
-        console.log(canvas.data('templateId'))
-
-
-        // console.log(query)
-
-
-        // console.log(id)
-
-
+        // TODO: 模板读取
     }
 
     // 选中控件

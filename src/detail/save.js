@@ -84,10 +84,18 @@ define(function(require, exports) {
         return data
     }
 
+    // 初始化整个save模块
+    exports.init = function() {
+
+
+
+
+    }
+
     // 根据documentId更新文档数据
     exports.update = function(documentId) {
 
-
+        console.log('update')
 
     }
 
@@ -96,11 +104,13 @@ define(function(require, exports) {
 
         // step 1: 弹出提示窗口
         // step 2: 点击保存按钮，触发canvasToJson
-        // step 3: 写入到数据库
-
+        // step 3: 写入到数据库，锁死整个页面，显示写入进度
+        // step 4: 根据请求返回的documentId，重置canvas的documentId
         var data = canvasToJson()
 
+        console.log('create')
+
         
-        console.log('根据type生成文件')
+        // console.log('根据type生成文件')
     }
 })
