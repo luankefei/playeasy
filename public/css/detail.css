@@ -24,3 +24,15 @@ div[data-control="text"] {
 .control:hover {
   cursor: pointer;
 }
+#download,
+#preview {
+  position: absolute;
+  width: 34px;
+  height: 82px;
+  line-height: 20px;
+  top: 128px;
+  left: 1496px;
+}
+#preview {
+  top: 250px;
+}
