@@ -70,6 +70,7 @@ define(function(require, exports) {
         wrap.append(dl)
     }
 
+    // 处理文件上传，目前只测试过csv
     var handleUpload = function() {
 
         var reader = new FileReader()
@@ -89,7 +90,7 @@ define(function(require, exports) {
         }
     }
 
-
+    // 事件绑定
     function bindEvents() {
 
         // 建立数据库连接：开始
@@ -132,8 +133,6 @@ define(function(require, exports) {
     exports.init = function() {
 
         if (databar === null) {
-
-            console.log('in')
 
             bindEvents()
 

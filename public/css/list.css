@@ -99,3 +99,26 @@
   cursor: pointer;
   color: #fff;
 }
+#create-doucment {
+  width: 240px;
+  height: 120px;
+  background: #fff;
+  border: 1px solid #f5f5f5;
+  padding: 30px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -80px;
+}
+#create-doucment dl {
+  margin-top: 20px;
+}
+#create-doucment dt {
+  float: left;
+  width: 80px;
+  line-height: 30px;
+}
+#create-doucment dd {
+  float: right;
+}
