@@ -1,7 +1,8 @@
 {
   "chart": {
     "renderTo": null,
-    "type": null
+    "type": null,
+    "backgroundColor": "rgba(0,0,0,0)"
   },
   "xAxis": {
     "label": {
