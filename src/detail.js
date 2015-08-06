@@ -9,7 +9,7 @@
  */
 define(function(require, exports) {
 
-    var init = require('./detail-init')
+    var init = require('./detail/init')
         // toolbar = require('./detail-toolbar'),
         // controlbar = require('./detail-controlbar')
 
@@ -70,4 +70,6 @@ define(function(require, exports) {
  * 重构了部分代码
  * 2015.7.16
  * 修改了控件拖拽事件，mousedown时会调用init模块的selectControl
+ * 2015.8.6
+ * 修改了require的路径
  */
