@@ -15,6 +15,9 @@ define(function(require, exports) {
 
     exports.init = function() {
 
+        // 初始化画布
+        init.initCanvas()
+
         // 初始化图表库
         init.loadChartLib()
 

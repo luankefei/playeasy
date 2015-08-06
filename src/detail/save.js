@@ -27,7 +27,6 @@ define(function(require, exports) {
         lastModify: ''
     }
 
-
     /*
     {
         id: 0,
@@ -42,13 +41,33 @@ define(function(require, exports) {
     }
     */
 
+    // 整合数据
+    function mixData() {
+
+        var data = JSON.parse(JSON.stringify(defaults))
+        var canvas = $('#canvas')
+
+        var title = canvas.data('title'),
+            id = canvas.data('id'),
+            templateId = canvas.data('templateId')
+
+        data.title = !!title ? title : data.title
+        data.id = !!id ? id : data.id
+        data.templateId = !!templateId ? templateId : data.templateId
+
+        return data
+    }
+
     // 将数据保存到数据库
     function save() {}
 
     // canvas指页面中唯一的同名id画布
     function canvasToJson() {
 
-        var data = JSON.parse(JSON.stringify(defaults))
+        var data = mixData()
+
+        console.log('canvas to json')
+        console.log(data)
 
         var canvas = $('#canvas')
         var controls = canvas.find('.control')
@@ -65,8 +84,15 @@ define(function(require, exports) {
         return data
     }
 
+    // 根据documentId更新文档数据
+    exports.update = function(documentId) {
+
+
+
+    }
+
     // 根据type生成文件
-    exports.build = function(type) {
+    exports.create = function(type) {
 
         // step 1: 弹出提示窗口
         // step 2: 点击保存按钮，触发canvasToJson

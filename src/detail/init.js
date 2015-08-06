@@ -36,6 +36,46 @@ define(function(require, exports, module) {
         return this
     }
 
+    // 初始化画布
+    init.initCanvas = function() {
+
+        console.log('---------------------------')
+        console.log('init canvas')
+        console.log(location)
+// /{(\w*)}/g
+
+        var canvas = $('#canvas')
+        var hash = location.hash        
+
+        var query = hash.substring(hash.indexOf('?') + 1)
+        var queryMap = {}
+
+        query.split('&').forEach(function(v, i) {
+
+            v = v.split('=')
+
+            queryMap[v[0]] = v[1]
+        })
+
+        for (var k in queryMap) {
+
+            // if (k instanceof queryMap) {
+
+                canvas.data(k, queryMap[k])    
+            // }
+        }
+
+        console.log(canvas.data('templateId'))
+
+
+        // console.log(query)
+
+
+        // console.log(id)
+
+
+    }
+
     // 选中控件
     init.selectControl = function(target) {
 
@@ -55,6 +95,7 @@ define(function(require, exports, module) {
         }
     }
 
+    // 加载图表库
     init.loadChartLib = function() {
 
         // 加载highcharts
@@ -146,7 +187,31 @@ define(function(require, exports, module) {
         // 保存
         $('#save').on('click', function() {
 
-            save.build('html')
+            var canvas = $('#canvas'),
+                documentId = canvas.data('documentId')
+
+            if (typeof documentId === 'Number' && documentId > 0) {
+
+                save.update(documentId)
+
+            } else {
+
+                PE.toggleShadow()
+                $('#create-document').show()
+            }
+        })
+
+        $('#create-document .title').on('keypress', function(e) {
+
+            if (e.keyCode === 13) {
+
+                $('#canvas').data('title', this.value)
+
+                PE.toggleShadow()
+                $('#create-document').hide()
+
+                save.create('html')
+            }
         })
     }
 
@@ -166,4 +231,5 @@ define(function(require, exports, module) {
  * 2015.8.6
  * 修改了整个文件的require路径
  * 重构了add-data的点击事件，将require移到文件顶部
+ * 增加initCanvas方法，供detail文件调用
  */
