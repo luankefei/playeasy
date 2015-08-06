@@ -8,7 +8,7 @@ div[data-control="text"] {
   margin-left: 55px;
   margin-top: 55px;
 }
-#canvas section {
+#canvas {
   height: 800px;
   overflow: hidden;
   position: relative;
@@ -24,15 +24,11 @@ div[data-control="text"] {
 .control:hover {
   cursor: pointer;
 }
-#download,
-#preview {
+#save {
   position: absolute;
   width: 34px;
   height: 82px;
   line-height: 20px;
   top: 128px;
   left: 1496px;
-}
-#preview {
-  top: 250px;
 }
