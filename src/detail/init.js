@@ -172,7 +172,17 @@ define(function(require, exports, module) {
 
         // 保存
         $('#save').on('click', function() {
+            
+            console.log('save button clicked.')
 
+            // TODO: 测试接口用的代码
+            $.get('/document', function(data) {
+
+                console.log(data)
+            })
+
+
+            /*
             var canvas = $('#canvas'),
                 documentId = canvas.data('documentId')
 
@@ -185,6 +195,7 @@ define(function(require, exports, module) {
                 PE.toggleShadow()
                 $('#create-document').show()
             }
+            */
         })
 
         $('#create-document .title').on('keypress', function(e) {
