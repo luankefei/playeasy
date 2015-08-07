@@ -35,12 +35,20 @@ var PE = (function() {
         if (location.hash === '' && user) {
 
             location.hash = '!/list'
+
+        // TODO: 优化，应该放在路由前调用
+        // 强制退回首页
+        } else if (location.hash !== '' && !user) {
+
+            location.hash = ''
         }
     }
 
     // 从session中获取当前用户
     // 如果session中不存在用户，并且当前用户不在首页，跳回首页
     pe.getCurrentUser = function() {
+
+        console.log('in current user')
 
         $.get('/session', function(d) {
 
@@ -112,4 +120,9 @@ $(document).ready(function() {
         e.stopPropagation()
     })
 })
+
+/**
+ * 2015.8.7
+ * 增加validateUser函数的判断分支，如果用户未登录，不能访问首页以外的页面
+ */
 
