@@ -11,7 +11,7 @@
 var pool = require('../models/db.js')
 
 // 获取模板，预留分页功能
-exports.getTemplate = function(callback, start, end) {
+exports.getTemplates = function(callback, start, end) {
 
     var sql = null
 

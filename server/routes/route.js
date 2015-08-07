@@ -1,4 +1,3 @@
-
 'use strict'
 
 /**
@@ -7,19 +6,20 @@
  * @description node路由入口
  * @date 2015.7.7
  */
-var user = require('./user'),
-    session = require('./session'),
+// var user = require('./user')
+var session = require('./session'),
     template = require('./template'),
-    file = require('./file')
+    doc = require('./document')
+    // file = require('./file')
 
 // 登录是创建currentUser
 // 注册是创建user
 module.exports = function(app) {
 
-	app.get('/', function(req, res) {
+    app.get('/', function(req, res) {
 
         res.redirect('/')
-	})
+    })
 
     // 注册
     // app.post('/user', user.register)
@@ -30,10 +30,14 @@ module.exports = function(app) {
     app.post('/session', session.login)
     app.delete('/session', session.logout)
 
-    app.get('/template', template.getTemplate)
+    // 获取模板
+    app.get('/template', template.getTemplates)
+
+    // 获取文档
+    app.get('/document', doc.getDocuments)
 
     // 上传
-    app.post('/file', file.upload)
+    // app.post('/file', file.upload)
 
 
     // 404
@@ -41,7 +45,7 @@ module.exports = function(app) {
 
         res.redirect('/')
     })
-}	// end module.exports
+}   // end module.exports
 
 /**
  * 2015.7.13

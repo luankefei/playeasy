@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -13,7 +12,6 @@ var session = require('express-session')
 var multer = require('multer')
 
 var routes = require('./routes/route')
-
 
 var app = express()
 
@@ -39,10 +37,10 @@ app.use(multer())
 routes(app)
 // development only
 // if ('development' == app.get('env')) {
-// 	app.use(express.errorHandler())
+//  app.use(express.errorHandler())
 // }
 
 http.createServer(app)
     .listen(app.get('port'), function() {
-	   console.log('Express server listening on port ' + app.get('port'))
+       console.log('Express server listening on port ' + app.get('port'))
 })

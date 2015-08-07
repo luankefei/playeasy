@@ -9,10 +9,10 @@
  */
 var Template = require('../models/template.js')
 
-exports.getTemplate = function(req, res) {
+exports.getTemplates = function(req, res) {
 
     // 从数据库中获取模板
-    Template.getTemplate(function(err, templates) {
+    Template.getTemplates(function(err, templates) {
 
         res.send({
 
