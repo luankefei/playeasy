@@ -99,3 +99,30 @@
   cursor: pointer;
   color: #fff;
 }
+#create-document {
+  width: 290px;
+  background: #fff;
+  border: 1px solid #dcdee0;
+  padding: 30px;
+  position: absolute;
+  z-index: 1001;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -80px;
+  display: none;
+}
+#create-document h2 {
+  margin-bottom: 20px;
+}
+#create-document dt {
+  float: left;
+  width: 60px;
+  line-height: 30px;
+}
+#create-document dd {
+  float: right;
+}
+#create-document dd input {
+  width: 224px;
+}

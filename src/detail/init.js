@@ -197,19 +197,6 @@ define(function(require, exports, module) {
             }
             */
         })
-
-        $('#create-document .title').on('keypress', function(e) {
-
-            if (e.keyCode === 13) {
-
-                $('#canvas').data('title', this.value)
-
-                PE.toggleShadow()
-                $('#create-document').hide()
-
-                save.create('html')
-            }
-        })
     }
 
     module.exports = init
@@ -229,4 +216,6 @@ define(function(require, exports, module) {
  * 修改了整个文件的require路径
  * 重构了add-data的点击事件，将require移到文件顶部
  * 增加initCanvas方法，供detail文件调用
+ * 2015.8.10
+ * 将创建文档的功能移到list页面
  */

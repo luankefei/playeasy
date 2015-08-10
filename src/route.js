@@ -8,7 +8,6 @@
  * @date 2015.7.8
  */
 $.route()
-    // .when(['', '/', '/index'], {
     .when('', {
 
         template: '/view/index.html',

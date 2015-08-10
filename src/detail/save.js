@@ -27,20 +27,6 @@ define(function(require, exports) {
         lastModify: ''
     }
 
-    /*
-    {
-        id: 0,
-        authorId: 0,
-        templateId: 0,
-        type: 0,
-        title: '',
-        description: '',
-        content: '',
-        createDate: '',
-        lastModify: ''
-    }
-    */
-
     // 整合数据
     function mixData() {
 
@@ -87,20 +73,16 @@ define(function(require, exports) {
     // 初始化整个save模块
     exports.init = function() {
 
-
-
-
     }
 
     // 根据documentId更新文档数据
     exports.update = function(documentId) {
 
         console.log('update')
-
     }
 
     // 根据type生成文件
-    exports.create = function(type) {
+    exports.create = function(params) {
 
         // step 1: 弹出提示窗口
         // step 2: 点击保存按钮，触发canvasToJson
@@ -114,3 +96,20 @@ define(function(require, exports) {
         // console.log('根据type生成文件')
     }
 })
+
+// {
+//     id: 0,
+//     authorId: 0,
+//     templateId: 0,
+//     type: 0,
+//     title: '',
+//     description: '',
+//     content: '',
+//     createDate: '',
+//     lastModify: ''
+// }
+
+/**
+ * 2015.8.10
+ * 
+ */

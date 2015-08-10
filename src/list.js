@@ -62,6 +62,7 @@ define(function(require, exports) {
         }
 
         return heightArr
+
     } // end function -> findColumn
 
     var getShorter = function(heightArr, option) {
@@ -199,6 +200,55 @@ define(function(require, exports) {
     // 绑定事件
     function bindEvents() {
 
+        $('.entry').on('click', function(e) {
+
+            // 显示创建
+            PE.toggleShadow()
+
+            var templateId = this.getAttribute('data-id')
+
+            $('#create-document').data('templateId', templateId).show()
+
+            // var templateId = this.getAttribute('data-id')
+
+            e.preventDefault()
+            e.stopPropagation()
+        })
+
+        
+        $('#create-document .title').on('keypress', function(e) {
+
+            // TODO: 这里是创建数据并跳转的动作
+            // TODO: 跳转前应该重置遮罩层和弹窗
+            if (e.keyCode === 13) {
+
+                var templateId = $('#create-document').data('templateId')
+
+                // TODO: 此处应该发送请求，创建一个文档，并将文档数据传向下个页面
+                var href = '/#!/detail?'
+                    + 'id=1'
+                    + 'templateId=' + templateId
+
+                $('#create-document').hide()
+
+                PE.toggleShadow()
+
+                // 创建文档
+                save.create('html')
+
+                //location.href = href
+
+                // $('#canvas').data('title', this.value)
+
+                // PE.toggleShadow()
+                // $('#create-document').hide()
+
+                // save.create('html')
+            }
+        })
+
+
+
         // $('.entry').on('click', function(e) {
 
         //     var templateId = this.getAttribute('data-id')
@@ -212,7 +262,7 @@ define(function(require, exports) {
         // })
     }
 
-    var init = function() {
+    exports.init = function() {
 
         // 初始化瀑布流区域 #waterfall
         // 列数 = 页面宽度 / 列宽
@@ -234,7 +284,7 @@ define(function(require, exports) {
         })
     }
 
-    exports.init = init
+    // exports.init = init
 })
 
 /**
@@ -245,4 +295,6 @@ define(function(require, exports) {
  * 对外导出了init函数，供route.js调用
  * 2015.8.6
  * 增加了bindEvents函数，负责事件绑定
+ * 2015.8.10
+ * 直接导出模块初始化函数init，与其他文件保持一致
  */
