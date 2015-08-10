@@ -1,5 +1,6 @@
 
 'use strict'
+
 /**
  * @name  base.js
  * @description  全站通用模块
