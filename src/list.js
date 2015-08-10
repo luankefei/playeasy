@@ -23,14 +23,19 @@ define(function(require, exports) {
     // 获取全部模板
     var getTemplate = function(page, perPage, callback) {
 
-        $.ajax({
-            type: 'get',
-            url: '/template',
-            success: function(data) {
+        $.get('/template', function(data) {
 
-                callback && callback(data)
-            }
+            callback && callback(data)
         })
+
+        // $.ajax({
+        //     type: 'get',
+        //     url: '/template',
+        //     success: function(data) {
+
+        //         callback && callback(data)
+        //     }
+        // })
     }
 
     // 获取各列的高度，返回一个数组
@@ -197,6 +202,20 @@ define(function(require, exports) {
         $('#waterfall').find('.template').show()
     }
 
+    // 创建文档
+    function createDocument(param, callback) {
+
+        $.ajax({
+            type: 'post',
+            url: '/document',
+            param: param,
+            success: function(data) {
+
+                callback && callback(data)
+            }
+        })
+    }
+
     // 绑定事件
     function bindEvents() {
 
@@ -233,8 +252,27 @@ define(function(require, exports) {
 
                 PE.toggleShadow()
 
+                var param = {
+
+                    id: 0,
+                    authorId: 0,
+                    templateId: 0,
+                    type: 0,
+                    title: '',
+                    description: '',
+                    content: '',
+                    createDate: '',
+                    lastModify: ''
+                }
+
+                createDocument(param, function() {
+
+
+
+                })
+
                 // 创建文档
-                save.create('html')
+                //save.create('html')
 
                 //location.href = href
 
@@ -297,4 +335,6 @@ define(function(require, exports) {
  * 增加了bindEvents函数，负责事件绑定
  * 2015.8.10
  * 直接导出模块初始化函数init，与其他文件保持一致
+ * 重构了getTemplate，使用$.get代替$.ajax
+ * 增加了createDocument函数
  */
