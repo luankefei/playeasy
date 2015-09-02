@@ -17,9 +17,6 @@ var pool = require('../models/db.js')
 
 exports.getDocumentsByUserId = function(userId, callback) {
 
-
-    console.log('in model')
-
     var testData = {
 
         id: 0,
@@ -36,7 +33,23 @@ exports.getDocumentsByUserId = function(userId, callback) {
     callback.call(null, null, testData)
 }
 
+exports.createDocument = function(param, callback) {
 
+    var testData = {
+
+        id: 0,
+        authorId: 0,
+        templateId: 0,
+        type: 0,
+        title: '',
+        description: '',
+        content: '',
+        createDate: '',
+        lastModify: ''
+    }
+
+    callback.call(null, null, testData)
+}
 
 
 

@@ -9,34 +9,29 @@
  */
 var Document = require('../models/document')
 
+// 创建文档
+exports.createDocument = function(req, res) {
+
+    var param = req.body
+
+    Document.createDocument(param, function(err, data) {
+
+        res.send(data)
+    })
+}
+
 // 根据userId获取documents列表
 exports.getDocuments = function(req, res) {
 
     var user = req.session.user
 
-    console.log(Document)
-
     if (user) {
 
         Document.getDocumentsByUserId(user.id, function(err, documents) {
 
-            console.log('in callback function')
-            console.log(documents)
-
             res.send(documents)
         })
     }
-
-
-
-
-    // console.log(req)
-
-    // if (req.body.user)
-
-
-    //Document.getDocumentsByUserId(function(err, documents) {})
-
 }
 
 // 根据Id获取document
@@ -50,21 +45,3 @@ exports.getDocumentById = function(req, res) {
 
 }
 
-
-
-
-
-
-exports.getTemplate = function(req, res) {
-
-    // 从数据库中获取模板
-    Template.getTemplate(function(err, templates) {
-
-        res.send({
-
-            code: 0,
-            message: '执行成功',
-            data: templates
-        })
-    })
-}

@@ -49,8 +49,6 @@ var PE = (function() {
     // 如果session中不存在用户，并且当前用户不在首页，跳回首页
     pe.getCurrentUser = function() {
 
-        console.log('in current user')
-
         $.get('/session', function(d) {
 
             if (d.code == 0) {

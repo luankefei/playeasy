@@ -103,7 +103,10 @@ define(function(require, exports) {
     }
 
     // TODO: 排序貌似有问题，现在是乱序，应该是按照imgReady的返回顺序进行排列的
-    var layoutTemplates = function(data, callback) {
+    function layoutTemplates(data, callback) {
+
+        // console.log(data)
+        // console.log(callback)
 
         var heightArr = getColumnHeight()
         var dataArr = []
@@ -189,9 +192,6 @@ define(function(require, exports) {
 
             t.find('.description').html(m.name)
 
-
-            console.log(t.find('.entry'))
-
             t.find('.entry').attr('href', '/#!/detail?templateId=' + m.id)
                 .attr('data-id', m.id)
 
@@ -246,7 +246,10 @@ define(function(require, exports) {
                 // TODO: 此处应该发送请求，创建一个文档，并将文档数据传向下个页面
                 var href = '/#!/detail?'
                     + 'id=1'
+                    + '&'
                     + 'templateId=' + templateId
+                    + '&'
+                    + 'title=' + this.value
 
                 $('#create-document').hide()
 
@@ -265,10 +268,12 @@ define(function(require, exports) {
                     lastModify: ''
                 }
 
-                createDocument(param, function() {
+                createDocument(param, function(data) {
 
+                    // TODO: 携带数据跳转
+                    console.log(data)
 
-
+                    location.href = href
                 })
 
                 // 创建文档
